@@ -30,3 +30,22 @@ Goal: To analyze the data, produce the final creative outputs, and complete a st
 - Weeks 9-10: **Data Analysis** + Design **fiction podcast episodes**.
 - Week 11: Synthesize the **results** + Draft core sections (**Methodology, Results**) of the final project report.
 - Weeks 12-13: **Final project report** + Archive **project assets** + Prepare **final presentation** + Complete all **handover documentation**
+
+Development Plan
+------
+### Core development
+1. Basic level functionality
+2. Player and NPC models and functionality
+3. Tutorial level
+4. Basic levels
+5. Menus
+### Flexible (If posible, in core development, if not, in Extra functionality development)
+1. Complete levels, with difficulty settings (Also new models for better aesthetic)
+2. Sorting Street
+3. Sortica Headquarters
+### Whole functionality development
+1. Accessibility features
+2. Cleanup and improvement
+ 
+### Extra functionality development (If possible)
+1. Music and sound
