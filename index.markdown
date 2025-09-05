@@ -1,13 +1,13 @@
 ---
 layout: single
-title: "Algorithmic Inventory Sorter"
+title: "Sortica - Algorithmic Inventory Sorter"
 ---
 
 <p style="font-size:1.2em;">Experience sorting and organizing items in a virtual workshop while learning the logic behind fundamental data structures!</p>
 
 <!-- Breve descripción -->
 <p>
-Algorithmic Inventory Sorter is an educational serious game that places you in a virtual workshop. Your task is to manage items arriving on a conveyor belt, processing them according to rules that demonstrate real computer science concepts like <strong>Stacks (LIFO)</strong> and <strong>Queues (FIFO)</strong>. Through puzzle-based interaction, abstract programming concepts become tangible and engaging.
+The proposed serious game, titled "Algorithmic Inventory Sorter," places the user in a virtual workshop where they are tasked with managing items arriving on a conveyor belt. The core mechanic involves interacting with a virtual machine to process these items according to specific rules that mirror the logic of fundamental data structures.
 </p>
 
 <!-- Escenas A-Frame -->
@@ -47,7 +47,7 @@ Algorithmic Inventory Sorter is an educational serious game that places you in a
 <!-- Call to Action -->
 <h2>Try it yourself</h2>
 <p>
-Check out the <a href="./code">Unity prototype</a> or browse the <a href="./doc">documentation</a> to see how the game mechanics work. The game is designed to teach programming concepts in a fun, interactive way.
+Check out the <a href="https://github.com/frankoldfield/sortica/tree/main/code">Unity prototype</a> or browse the <a href="https://github.com/frankoldfield/sortica/tree/main/doc">documentation</a> to see how the game mechanics work. The game is designed to teach programming concepts in a fun, interactive way.
 </p>
 
 <h2>Learning Outcomes</h2>
@@ -59,7 +59,7 @@ Check out the <a href="./code">Unity prototype</a> or browse the <a href="./doc"
 
 <h2>More Information</h2>
 <p>
-For additional resources, updates, or contact, visit our <a href="./doc">documentation page</a> or <a href="./code">project repository</a>.
+For additional resources, updates, or contact, visit our <a href="https://github.com/frankoldfield/sortica/tree/main/doc">documentation page</a> or <a href="https://github.com/frankoldfield/sortica/tree/main/code">project repository</a>.
 </p>
 
 <style>
