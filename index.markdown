@@ -1,20 +1,22 @@
 ---
 layout: single
-title: "Welcome to Sortica's WebPage!"
+title: "Algorithmic Inventory Sorter"
 ---
 
-<h1>Overview</h1>
-<p>Sortica scene drafts!</p>
+<p style="font-size:1.2em;">Experience sorting and organizing items in a virtual workshop while learning the logic behind fundamental data structures!</p>
 
-<!-- Carga A-Frame -->
+<!-- Breve descripción -->
+<p>
+Algorithmic Inventory Sorter is an educational serious game that places you in a virtual workshop. Your task is to manage items arriving on a conveyor belt, processing them according to rules that demonstrate real computer science concepts like <strong>Stacks (LIFO)</strong> and <strong>Queues (FIFO)</strong>. Through puzzle-based interaction, abstract programming concepts become tangible and engaging.
+</p>
+
+<!-- Escenas A-Frame -->
 <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 40px;">
 
-<!-- Contenedor principal -->
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-
-  <!-- Escena Sortica HQ -->
+  <!-- Escena 1 -->
   <div style="flex: 1 1 45%; max-width: 600px; display: flex; flex-direction: column; align-items: center;">
-    <div style="position: relative; width: 100%; padding-top: 56.25%;"> <!-- 16:9 ratio -->
+    <div style="position: relative; width: 100%; padding-top: 56.25%;">
       <a-scene embedded style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
         <a-assets>
           <img id="VR_Sortica" src="{{ '/assets/scenes/sortica_hq.png' | relative_url }}">
@@ -23,12 +25,12 @@ title: "Welcome to Sortica's WebPage!"
         <a-camera position="0 0 0" fov="90"></a-camera>
       </a-scene>
     </div>
-    <p>Sortica HQ Scene</p>
+    <p style="font-weight:bold;">Sortica HQ Preview</p>
   </div>
 
-  <!-- Escena Tutorial -->
+  <!-- Escena 2 -->
   <div style="flex: 1 1 45%; max-width: 600px; display: flex; flex-direction: column; align-items: center;">
-    <div style="position: relative; width: 100%; padding-top: 56.25%;"> <!-- 16:9 ratio -->
+    <div style="position: relative; width: 100%; padding-top: 56.25%;">
       <a-scene embedded style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
         <a-assets>
           <img id="VR_Tutorial" src="{{ '/assets/scenes/tutorial.png' | relative_url }}">
@@ -37,16 +39,33 @@ title: "Welcome to Sortica's WebPage!"
         <a-camera position="0 0 0" fov="90"></a-camera>
       </a-scene>
     </div>
-    <p>Tutorial Scene</p>
+    <p style="font-weight:bold;">Tutorial Level Preview</p>
   </div>
 
 </div>
 
-<!-- Responsive para móviles -->
+<!-- Call to Action -->
+<h2>Try it yourself</h2>
+<p>
+Check out the <a href="./code">Unity prototype</a> or browse the <a href="./doc">documentation</a> to see how the game mechanics work. The game is designed to teach programming concepts in a fun, interactive way.
+</p>
+
+<h2>Learning Outcomes</h2>
+<ul>
+  <li>Understand fundamental data structures through hands-on puzzles.</li>
+  <li>Experience Stack (LIFO) and Queue (FIFO) behavior interactively.</li>
+  <li>Learn to approach problem solving with algorithmic thinking.</li>
+</ul>
+
+<h2>More Information</h2>
+<p>
+For additional resources, updates, or contact, visit our <a href="./doc">documentation page</a> or <a href="./code">project repository</a>.
+</p>
+
 <style>
-  @media (max-width: 800px) {
-    div[style*="flex: 1 1 45%"] {
-      flex: 1 1 100% !important;
-    }
+@media (max-width: 800px) {
+  div[style*="flex: 1 1 45%"] {
+    flex: 1 1 100% !important;
   }
+}
 </style>
