@@ -29,9 +29,30 @@ github_username:  frankoldfield
 
 # Build settings
 remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: dark
 plugins:
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-spaceship
+  - jekyll-pdf-embed
+
+include: ["_pages"]
+
+
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
