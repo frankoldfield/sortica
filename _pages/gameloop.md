@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Gameloop"
-permalink: /sortica/gameloop
+permalink: /gameloop
 ---
 
 <div style="

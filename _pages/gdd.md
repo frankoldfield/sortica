@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Game Design Document"
-permalink: /sortica/gdd
+permalink: /gdd
 ---
 
 <object data="/sortica/assets/pdfs/gdd_latest.pdf" width="1000px" height="1000px" type="application/pdf"></object>

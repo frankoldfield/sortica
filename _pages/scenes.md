@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Scenes"
-permalink: /sortica/scenes
+permalink: /scenes
 ---
 
 <!-- Escenas A-Frame -->

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Learning Objectives"
-permalink: /sortica/learningobjectives
+permalink: /learningobjectives
 ---
 
 The general learning objectives (**LO**) of this serious game are:

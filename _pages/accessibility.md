@@ -1,5 +1,5 @@
 ---
 layout: single
 title: "Accessibility"
-permalink: /sortica/accessibility
+permalink: /accessibility
 ---

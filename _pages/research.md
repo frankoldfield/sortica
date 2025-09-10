@@ -1,5 +1,5 @@
 ---
 layout: single
 title: "Research"
-permalink: /sortica/research
+permalink: /research
 ---
