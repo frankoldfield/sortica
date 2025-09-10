@@ -31,7 +31,7 @@ feature_row:
     alt: "gdd.png"
     title: "GDD"
     excerpt: "Game Design Document"
-    url: "/sortica/gdd/"
+    url: "/sortica/gdd"
     btn_label: "See more"
     btn_class: "btn--primary"
 
@@ -39,7 +39,7 @@ feature_row:
     alt: "gameloop.png"
     title: "Gameloop"
     excerpt: "Gameloop flowchart"
-    url: "/sortica/gameloop/"
+    url: "/sortica/gameloop"
     btn_label: "See more"
     btn_class: "btn--primary"
 
@@ -47,7 +47,7 @@ feature_row:
     alt: "LOs.png"
     title: "LOs"
     excerpt: "Learning Objectives"
-    url: "/sortica/learningobjectives/"
+    url: "/sortica/learningobjectives"
     btn_label: "See more"
     btn_class: "btn--primary" 
 
@@ -55,7 +55,7 @@ feature_row:
     alt: "accessibility.png"
     title: "Accessibility"
     excerpt: "Accessibility features and guidelines"
-    url: "/sortica/accessibility/"
+    url: "/sortica/accessibility"
     btn_label: "See more"
     btn_class: "btn--primary" 
 
@@ -63,7 +63,7 @@ feature_row:
     alt: "research.png"
     title: "Research"
     excerpt: "Research study"
-    url: "/sortica/research/"
+    url: "/sortica/research"
     btn_label: "See more"
     btn_class: "btn--primary" 
 
