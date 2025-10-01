@@ -11,6 +11,7 @@ github_username: frankoldfield
 # Build settings
 # CAMBIO IMPORTANTE: Ya no usamos remote_theme, sino el tema como gem
 # Nota: Minimal Mistakes versión 4.27.3 (última disponible)
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 minimal_mistakes_skin: dark
 
 head_scripts:
