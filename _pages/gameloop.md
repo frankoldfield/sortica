@@ -4,14 +4,18 @@ title: "Gameloop"
 permalink: /gameloop
 ---
 
-<div style="
-    background-color: #f5f5f5; 
-    padding: 20px; 
-    border: 2px solid #bbbbbb; 
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-">
+<style>
+.mermaid img {
+    alt: "Sortica Game Flow Diagram" !important;
+}
+/* Añadir atributo alt via JavaScript si no existe */
+</style>
+
+
 ```mermaid!
+---
+title: Flowchart
+---
 %%{init: {"themeVariables": {"edgeLabelBackground":"#ffffff"}}}%%
 flowchart TD
     A[Start] --> B[Sortica HQ<br/>Start or view stats]
@@ -69,6 +73,4 @@ flowchart TD
     class B,D,E,F,H,I,J,K,L,M,P,Q,R,S,T,U,V,W,X,Y,Z,AA action
     class C,N decision
     class O,X video
-
 ```
-</div>
