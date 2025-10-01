@@ -7,3 +7,40 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+// Disable avatar linking and hover behavior
+.author__avatar a {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+}
+
+.author__avatar a:hover {
+  text-decoration: none;
+}
+
+// Remove white border from avatars and disable hover effects
+.author__avatar img {
+  border: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+.author__avatar img:hover {
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+// Keep sidebar content always at full brightness
+.sidebar .author__content,
+.sidebar {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.sidebar .author__content:hover,
+.sidebar:hover {
+  opacity: 1 !important;
+}

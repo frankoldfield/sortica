@@ -1,0 +1,30 @@
+Frank:
+  name: "Frank"
+  bio: "Game developer and researcher working on serious games for computer science education."
+  avatar: "/assets/images/frank-avatar.jpg"
+  location: # "Location"
+  email: # "frank@example.com"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/frankoldfield"
+    - label: "LinkedIn"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "https://www.linkedin.com/in/frank-oldfield"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:frank@example.com"
+
+UWS CCT Lab:
+  name: "UWS CCT Lab"
+  bio: "Creative Computing Technologies Lab at University of the West of Scotland, developing innovative educational technologies and serious games."
+  avatar: "/assets/images/uws-cct-logo.jpg"
+  location: "Paisley Campus - UWS"
+  email: # "cct@uws.ac.uk"
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://uwscct.co.uk/"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:frank@example.com"

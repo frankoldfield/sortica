@@ -1,7 +1,9 @@
 ---
-layout: splash
+layout: single
 title: "Welcome to the Sortica development page"
 permalink: /
+classes: wide
+
 
 header:
   overlay_color: "#000"
