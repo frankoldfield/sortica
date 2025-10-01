@@ -4,9 +4,16 @@ title:  "First approach"
 date:   2025-09-01
 categories: jekyll update
 ---
+First GDD draft, and some level ideas:
+* Tutorial : Simple objects with no textures, something like Portal, the aim is to explain basic functionality.
+* Kitchen level: Maybe add priority queues in this level, you have to apply FIFO algorithm to serve clients.
+* Factory: Multiple queues with different prioritys?
+* Some level related to package redirection, like a communication tower.
+Maybe add one queue for each kind of plate in the restaurant level? This way, for example, appetizers would have priority over main courses.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sodales nisl, id vulputate tellus. Etiam ipsum neque, tincidunt id vulputate vel, finibus quis tortor. Quisque imperdiet egestas orci ut accumsan. Praesent consequat dolor in eros condimentum volutpat. Proin eget diam mauris. Mauris sed congue est. Cras vulputate scelerisque commodo. Cras id molestie quam. Nam accumsan dui sit amet dui laoreet tincidunt. Vivamus semper ligula lectus, ac congue ipsum cursus et. Suspendisse ullamcorper cursus arcu quis blandit.
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/01-09_1.png" alt="" class="full">
 
-Integer tempor, nunc vel varius commodo, felis sapien euismod arcu, et rutrum ante nisi ut urna. Nunc sed nisl diam. In lobortis, dolor in venenatis gravida, velit arcu tempor leo, in facilisis mi neque in nibh. Nullam libero lectus, porta sed molestie quis, dignissim eget urna. Quisque ut orci neque. Donec sem ligula, iaculis et fermentum et, fringilla sit amet ligula. Fusce dictum magna sapien, eu luctus mi scelerisque a.
+Idea: Resource manager city builder, how you applied the algorithms determines the earnings of each business. With the currency, you unlock new areas, buildings and algorithms.
 
-Mauris ullamcorper sit amet nulla nec fringilla. Maecenas id vestibulum diam, et finibus arcu. In finibus, nibh euismod rutrum varius, diam tellus dignissim velit, in convallis augue erat vitae orci. Aliquam erat volutpat. Aliquam in venenatis eros, non efficitur purus. Cras in ultrices justo. Integer mi lacus, blandit in vehicula sit amet, rhoncus at risus. Nullam orci mi, auctor non ante maximus, gravida faucibus augue. Vestibulum eu placerat purus. Aliquam ac malesuada nibh. Etiam consectetur tortor non diam scelerisque, sed pharetra ante ullamcorper.
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/01-09_2.png" alt="" class="full">
+

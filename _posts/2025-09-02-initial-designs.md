@@ -4,9 +4,24 @@ title:  "Initial design"
 date:   2025-09-02
 categories: jekyll update
 ---
+How do we assess the impact of the game? -> Pre-session + Game group and control group + Post-session evaluation. (Questionnaires to test LOs and mental fatigue after the use of the game)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sodales nisl, id vulputate tellus. Etiam ipsum neque, tincidunt id vulputate vel, finibus quis tortor. Quisque imperdiet egestas orci ut accumsan. Praesent consequat dolor in eros condimentum volutpat. Proin eget diam mauris. Mauris sed congue est. Cras vulputate scelerisque commodo. Cras id molestie quam. Nam accumsan dui sit amet dui laoreet tincidunt. Vivamus semper ligula lectus, ac congue ipsum cursus et. Suspendisse ullamcorper cursus arcu quis blandit.
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/02-09_1.png" alt="" class="full">
 
-Integer tempor, nunc vel varius commodo, felis sapien euismod arcu, et rutrum ante nisi ut urna. Nunc sed nisl diam. In lobortis, dolor in venenatis gravida, velit arcu tempor leo, in facilisis mi neque in nibh. Nullam libero lectus, porta sed molestie quis, dignissim eget urna. Quisque ut orci neque. Donec sem ligula, iaculis et fermentum et, fringilla sit amet ligula. Fusce dictum magna sapien, eu luctus mi scelerisque a.
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/02-09_2.png" alt="" class="full">
 
-Mauris ullamcorper sit amet nulla nec fringilla. Maecenas id vestibulum diam, et finibus arcu. In finibus, nibh euismod rutrum varius, diam tellus dignissim velit, in convallis augue erat vitae orci. Aliquam erat volutpat. Aliquam in venenatis eros, non efficitur purus. Cras in ultrices justo. Integer mi lacus, blandit in vehicula sit amet, rhoncus at risus. Nullam orci mi, auctor non ante maximus, gravida faucibus augue. Vestibulum eu placerat purus. Aliquam ac malesuada nibh. Etiam consectetur tortor non diam scelerisque, sed pharetra ante ullamcorper.
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/02-09_3.png" alt="" class="full">
+
+Instead of having a menu, we can have a "Headquarters" location, from where we will be able to choose between going to Sorting Street, re-viewing old videos, or replay certain levels.
+
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/02-09_4.png" alt="" class="full">
+
+Idea: After each level, users can tell the problems and benefits they think the used algorithm has.
+
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/02-09_5.png" alt="" class="full">
+
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/02-09_6.png" alt="" class="full">
+
+Maybe add an indicator showing the amount of objects that still have to come through the input queue, so the user can take that and the spaces left in the auxiliary desk into account before making decisions.
+
+<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/02-09_7.png" alt="" class="full">

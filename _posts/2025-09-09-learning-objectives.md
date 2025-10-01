@@ -5,8 +5,15 @@ date:   2025-09-09
 categories: jekyll update
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sodales nisl, id vulputate tellus. Etiam ipsum neque, tincidunt id vulputate vel, finibus quis tortor. Quisque imperdiet egestas orci ut accumsan. Praesent consequat dolor in eros condimentum volutpat. Proin eget diam mauris. Mauris sed congue est. Cras vulputate scelerisque commodo. Cras id molestie quam. Nam accumsan dui sit amet dui laoreet tincidunt. Vivamus semper ligula lectus, ac congue ipsum cursus et. Suspendisse ullamcorper cursus arcu quis blandit.
-
-Integer tempor, nunc vel varius commodo, felis sapien euismod arcu, et rutrum ante nisi ut urna. Nunc sed nisl diam. In lobortis, dolor in venenatis gravida, velit arcu tempor leo, in facilisis mi neque in nibh. Nullam libero lectus, porta sed molestie quis, dignissim eget urna. Quisque ut orci neque. Donec sem ligula, iaculis et fermentum et, fringilla sit amet ligula. Fusce dictum magna sapien, eu luctus mi scelerisque a.
-
-Mauris ullamcorper sit amet nulla nec fringilla. Maecenas id vestibulum diam, et finibus arcu. In finibus, nibh euismod rutrum varius, diam tellus dignissim velit, in convallis augue erat vitae orci. Aliquam erat volutpat. Aliquam in venenatis eros, non efficitur purus. Cras in ultrices justo. Integer mi lacus, blandit in vehicula sit amet, rhoncus at risus. Nullam orci mi, auctor non ante maximus, gravida faucibus augue. Vestibulum eu placerat purus. Aliquam ac malesuada nibh. Etiam consectetur tortor non diam scelerisque, sed pharetra ante ullamcorper.
+Redacted the first draft of the learning objectives:
+1. **LO1:** After playing the game, the learner will be able to explain and apply the concept of [Scheduling Algorithm](https://en.wikipedia.org/wiki/Scheduling_(computing)).
+2. **LO2:** After playing the game, the learner will be able to explain and apply the concept of [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)).
+3. **LO3:** After playing the game, the learner will be able to explain and apply the concept of [Stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
+4. **LO4:** After playing the game, the learner will be able to explain and apply the concept of [Multi-Level Queue (MLQ)](https://en.wikipedia.org/wiki/Multilevel_queue).
+5. **LO5:** After playing the game, the learner will be able to explain and apply the concept of [Priority](https://en.wikipedia.org/wiki/Priority_queue).
+6. **LO6:** After playing the game, the learner will be able to explain and apply [First-in-First-Out (FIFO) algorithms](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)).
+7. **LO7:** After playing the game, the learner will be able to explain and apply [Last-in-First-Out (LIFO) algorithms](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)#Implementations).
+8. **LO8:** After playing the game, the learner will be able to explain and apply [FIFO algorithms involving multiple queues with different priorities](https://en.wikipedia.org/wiki/Multilevel_queue).
+9. **LO9:** After playing the game, the learner will be able to explain and apply [Round-Robin algorithms](https://en.wikipedia.org/wiki/Round-robin_scheduling).
+10. **LO10:** While playing the game, the learner will be able to demonstrate problem-solving skills using interactive, hands-on gameplay mechanics.
+11. **LO11:** While playing the game, the learner will engage with accessibility features that support diverse visual, auditory, and motor needs while completing in-game tasks.
