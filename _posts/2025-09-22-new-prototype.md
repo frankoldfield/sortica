@@ -1,10 +1,11 @@
 ---
 layout: single
 title:  "New ShapesXR prototype"
-date:   2025-09-10
+date:   2025-09-22
 categories: jekyll update
 ---
-
+Refined the design changes. We are using programmable matter, that way, we can just have materials, and once you build a small model of the building, the programmable matter adjusts itself to the real size of the building
 Deployed first complete version of the Sortica Development Webpage.
 
-<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/11-09_1.png" alt="" class="full">
+Started developing a ShapesXR prototype based on this new concept.
+

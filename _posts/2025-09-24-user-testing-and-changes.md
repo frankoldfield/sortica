@@ -1,10 +1,12 @@
 ---
 layout: single
 title:  "User testing and changes"
-date:   2025-09-10
+date:   2025-09-24
 categories: jekyll update
 ---
 
-Deployed first complete version of the Sortica Development Webpage.
+After some user testing, we got some feedback:
+* Labels on game elements, or something that lets you know what element is supposed to go where.
+* Being able to rotate the final buildings, after spending time building it, you want to see the whole of it.
 
-<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/11-09_1.png" alt="" class="full">
+To apply this, I went to the guidelines again.

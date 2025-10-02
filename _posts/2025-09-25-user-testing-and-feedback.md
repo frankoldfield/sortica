@@ -1,10 +1,11 @@
 ---
 layout: single
 title:  "User testing and feedback changes"
-date:   2025-09-10
+date:   2025-09-25
 categories: jekyll update
 ---
 
-Deployed first complete version of the Sortica Development Webpage.
+After more user testing, we got some feedback:
+* Need to communicate when something is not in the wrong order, you can't just not take it.
 
-<img src="{{ site.url }}{{ site.baseurl }}/assets/posts/11-09_1.png" alt="" class="full">
+To apply this, I went to the guidelines again.
