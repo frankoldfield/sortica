@@ -99,7 +99,7 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 # Cached packages
-/Library/PackageCache/*
-/Library/BurstCache/*
-/Library/ShaderCache/*
-/Library/StateCache/*
+Library/PackageCache/
+Library/BurstCache/
+Library/ShaderCache/
+Library/StateCache/
