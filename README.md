@@ -49,3 +49,48 @@ Development Plan
  
 ### Extra functionality development (If possible)
 1. Music and sound
+
+Gameloop
+------
+```mermaid
+flowchart TD;
+    %% Start
+    A[Start] --> B[Sortrica HQ]
+
+    %% From HQ
+    B --> Z{Choose action}
+    Z --> |Portal| G[Sorting Street]
+    Z <--> |Levels button| H[Level Selection]
+    Z <--> |Videos button| E[Video Selection]
+    Z --> |Exit button| F[Exit menu]
+
+    %% Sorting St. path
+    G --> M[Choose Level]
+    K --> G
+    K --> B
+
+    %% Levels button path
+    H --> M
+
+    %% Levels common path
+    M --> |Start level| V{First time playing level?}
+    V --> |Yes| C[Watch video]
+    C --> I[Level]
+    V --> |No| I
+    M --> |Information| N[Level Stats]
+    N --> M
+    I --> J{Complete or exit?}
+    J --> |Complete| W[Gameplay stats]
+    W --> |Accept| K[Choose exit point]
+    J --> |Exit| K
+    I --> |Restart Level| I
+
+    %% Videos path
+    E --> O[Select Video]
+    O --> P[Watch Video]
+    P --> |Finish or exit| E
+
+    %% Exit
+    F --> |Confirm| Q[Quit game]
+    F --> |Cancel| Z
+```
