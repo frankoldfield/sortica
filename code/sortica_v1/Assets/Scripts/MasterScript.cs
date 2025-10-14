@@ -2,16 +2,15 @@ using UnityEngine;
 
 public enum GameStates
 {
-    Restart_Game = -1,
-    Loading_Game = 0,
-    Start = 1,
-    Introduction = 2,
-    First_Level = 3,
-    First_Finished = 4,
-    First_to_Second = 5,
-    Second_Level = 6,
-    Second_Finished = 7,
-    Game_Finished = 8
+    Restart_Game,
+    Loading_Game,
+    Start,
+    Introduction,
+    First_Level,
+    First_Finished,
+    Second_Level,
+    Second_Finished,
+    Game_Finished
 }
 
 public class MasterScript : MonoBehaviour
@@ -24,6 +23,7 @@ public class MasterScript : MonoBehaviour
     [Header("Game Components")]
     public MatterGenerator matterGenerator;
     public ContentionUnit contentionUnit;
+    public NPCDialogueManager supervisor;
     
     private VRMovementTracker movementTracker;
     
@@ -51,7 +51,7 @@ public class MasterScript : MonoBehaviour
         // Read progress
         // Load progress
         // Start world
-        game_state = GameStates.First_Level;
+        game_state = GameStates.Introduction;
     }
 
     void Update()
@@ -59,10 +59,52 @@ public class MasterScript : MonoBehaviour
         // Detect state changes and log them
         if (game_state != previous_state)
         {
+            Debug.Log("Stage transition from "+ previous_state.ToString()+" to "+ game_state.ToString());
             HandleStateTransition(previous_state, game_state);
             previous_state = game_state;
         }
-        
+        //else if (game_state == GameStates.First_Finished)   
+        //{
+        //    game_state = GameStates.Second_Level;
+        //    Debug.Log("Stage transition from " + previous_state.ToString() + " to " + game_state.ToString());
+        //    HandleStateTransition(previous_state, game_state);
+        //    previous_state = game_state;
+
+        //}
+        //switch (game_state)
+        //{
+
+        //    case GameStates.Restart_Game:
+
+        //        break;
+        //    case GameStates.Loading_Game:
+
+        //        break;
+        //    case GameStates.Start:
+
+        //        break;
+        //    case GameStates.Introduction:
+
+        //        break;
+        //    case GameStates.First_Level:
+
+        //        break;
+        //    case GameStates.First_Finished:
+
+        //        break;
+        //    case GameStates.Second_Level:
+
+        //        break;
+        //    case GameStates.Second_Finished:
+
+        //        break;
+        //    case GameStates.Game_Finished:
+
+        //        break;
+        //    default:
+
+        //        break;
+        //}
         // switch case with different game states
         // Do state checks
         // Perform state actions
@@ -81,12 +123,21 @@ public class MasterScript : MonoBehaviour
         // Handle specific transitions
         switch (toState)
         {
+            case GameStates.Loading_Game:
+
+                break;
+            case GameStates.Start:
+
+                break;
+            case GameStates.Introduction:
+                supervisor.StartDialogue(DialogueStage.Introduction);
+                break;
             case GameStates.First_Level:
                 AnalyticsLogger.Instance.LogEvent("levelStart", new { level = "level1", algorithm = "FIFO" });
                 movementTracker.ResetTracking();
 
                 // Initialize generator and contention unit for level 1
-                Debug.Log("Empieza primer nivel lol");
+                Debug.Log("Empieza primer nivel");
                 matterGenerator.InitializeForLevel("level1");
                 contentionUnit.InitializeForLevel("level1");
                 break;
@@ -95,6 +146,7 @@ public class MasterScript : MonoBehaviour
                 // Capture level 1 movement data
                 level1MovementData = movementTracker.GetMovementData();
                 AnalyticsLogger.Instance.LogLevelComplete("level1", level1MovementData);
+                supervisor.StartDialogue(DialogueStage.Level2);
                 break;
                 
             case GameStates.Second_Level:
@@ -110,6 +162,7 @@ public class MasterScript : MonoBehaviour
                 // Capture level 2 movement data
                 level2MovementData = movementTracker.GetMovementData();
                 AnalyticsLogger.Instance.LogLevelComplete("level2", level2MovementData);
+                supervisor.StartDialogue(DialogueStage.FinishedGame);
                 break;
                 
             case GameStates.Game_Finished:
@@ -149,6 +202,30 @@ public class MasterScript : MonoBehaviour
         else if (level == "level2" && game_state == GameStates.Second_Level)
         {
             game_state = GameStates.Second_Finished;
+        }
+    }
+
+    public void OnDialogueEnded(DialogueStage dialogueStage)
+    {
+        switch (dialogueStage) 
+        { 
+            case DialogueStage.NotSpeaking:
+
+                break;
+            case DialogueStage.Hints:
+
+                break;
+            case DialogueStage.Introduction:
+                //TO-DO: Move supervisor
+                game_state = GameStates.First_Level;
+                break;
+            case DialogueStage.Level2:
+                game_state = GameStates.Second_Level;
+                break;
+
+            case DialogueStage.FinishedGame:
+                game_state = GameStates.Game_Finished;
+                break;
         }
     }
 }

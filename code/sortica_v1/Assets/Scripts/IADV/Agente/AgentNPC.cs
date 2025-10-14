@@ -10,9 +10,6 @@ public class AgentNPC : Agente
     // Steering que se aplicará para el movimiento final. Sus atributos se calcularán mediante el árbitro.
     Steering steer = null;
 
-    // Árbitro.
-    private ArbitroPonderado arbitro = null;
-
     protected new void Awake()
     {
         base.Awake();
@@ -33,16 +30,10 @@ public class AgentNPC : Agente
      */
     private void LateUpdate()
     {
-        arbitro = GetComponent<ArbitroPonderado>();
-        if(arbitro != null)
-            steer = arbitro.GetSteering(this);
-        else
+        SteeringBehaviour steeringBehaviour = GetComponent<SteeringBehaviour>();
+        if(steeringBehaviour != null)
         {
-            SteeringBehaviour steeringBehaviour = GetComponent<SteeringBehaviour>();
-            if(steeringBehaviour != null)
-            {
-                steer = steeringBehaviour.GetSteering(this);
-            }
+            steer = steeringBehaviour.GetSteering(this);
         }
     }
 

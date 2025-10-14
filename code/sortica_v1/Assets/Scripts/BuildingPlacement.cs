@@ -11,9 +11,11 @@ public class BuildingPlacement : MonoBehaviour
     public GameObject placementIndicator;
     
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
+    public bool isCompleted = false;
     private bool isPlaced = false;
     private string currentLevel;
     private float grabTime;
+    
     
     void Start()
     {
@@ -50,8 +52,9 @@ public class BuildingPlacement : MonoBehaviour
         // Check if building is close enough to placement zone
         float distance = Vector3.Distance(transform.position, placementZone.position);
         
-        if (distance <= placementRadius)
-        {
+        //if (distance <= placementRadius)
+        if (isCompleted)
+            {
             // Snap to placement zone
             transform.position = placementZone.position;
             transform.rotation = placementZone.rotation;
@@ -77,18 +80,18 @@ public class BuildingPlacement : MonoBehaviour
             // Notify MasterScript that building was placed
             NotifyMasterScript();
         }
-        else
-        {
-            AnalyticsLogger.Instance.LogEvent("buildingPlacementAttempt", new 
-            { 
-                level = currentLevel,
-                distanceFromTarget = distance,
-                tooFar = true,
-                holdDuration = holdDuration
-            });
+        //else
+        //{
+        //    AnalyticsLogger.Instance.LogEvent("buildingPlacementAttempt", new 
+        //    { 
+        //        level = currentLevel,
+        //        distanceFromTarget = distance,
+        //        tooFar = true,
+        //        holdDuration = holdDuration
+        //    });
             
-            Debug.Log($"Building too far from placement zone. Distance: {distance:F2}m (needs {placementRadius}m)");
-        }
+        //    Debug.Log($"Building too far from placement zone. Distance: {distance:F2}m (needs {placementRadius}m)");
+        //}
     }
     
     void NotifyMasterScript()
