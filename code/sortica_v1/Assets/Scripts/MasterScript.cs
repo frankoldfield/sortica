@@ -25,11 +25,14 @@ public class MasterScript : MonoBehaviour
     public ContentionUnit contentionUnit;
     public NPCDialogueManager supervisor;
     
+    public Animator ContainerAnimator;
+    
     private VRMovementTracker movementTracker;
     
     // Movement data storage
     private MovementData level1MovementData;
     private MovementData level2MovementData;
+
 
     void Start()
     {
@@ -52,6 +55,7 @@ public class MasterScript : MonoBehaviour
         // Load progress
         // Start world
         game_state = GameStates.Introduction;
+        ContainerAnimator.SetBool("open", true);
     }
 
     void Update()
@@ -63,52 +67,6 @@ public class MasterScript : MonoBehaviour
             HandleStateTransition(previous_state, game_state);
             previous_state = game_state;
         }
-        //else if (game_state == GameStates.First_Finished)   
-        //{
-        //    game_state = GameStates.Second_Level;
-        //    Debug.Log("Stage transition from " + previous_state.ToString() + " to " + game_state.ToString());
-        //    HandleStateTransition(previous_state, game_state);
-        //    previous_state = game_state;
-
-        //}
-        //switch (game_state)
-        //{
-
-        //    case GameStates.Restart_Game:
-
-        //        break;
-        //    case GameStates.Loading_Game:
-
-        //        break;
-        //    case GameStates.Start:
-
-        //        break;
-        //    case GameStates.Introduction:
-
-        //        break;
-        //    case GameStates.First_Level:
-
-        //        break;
-        //    case GameStates.First_Finished:
-
-        //        break;
-        //    case GameStates.Second_Level:
-
-        //        break;
-        //    case GameStates.Second_Finished:
-
-        //        break;
-        //    case GameStates.Game_Finished:
-
-        //        break;
-        //    default:
-
-        //        break;
-        //}
-        // switch case with different game states
-        // Do state checks
-        // Perform state actions
-        // Load new state or keep same state
     }
     
     void HandleStateTransition(GameStates fromState, GameStates toState)
@@ -140,6 +98,7 @@ public class MasterScript : MonoBehaviour
                 Debug.Log("Empieza primer nivel");
                 matterGenerator.InitializeForLevel("level1");
                 contentionUnit.InitializeForLevel("level1");
+                supervisor.StartDialogue(DialogueStage.Hints);
                 break;
                 
             case GameStates.First_Finished:
@@ -156,6 +115,7 @@ public class MasterScript : MonoBehaviour
                 // Initialize generator and contention unit for level 2
                 matterGenerator.InitializeForLevel("level2");
                 contentionUnit.InitializeForLevel("level2");
+                supervisor.StartDialogue(DialogueStage.Hints);
                 break;
                 
             case GameStates.Second_Finished:
@@ -227,5 +187,12 @@ public class MasterScript : MonoBehaviour
                 game_state = GameStates.Game_Finished;
                 break;
         }
+    }
+
+    public void ExitGame() 
+    
+    {
+        ContainerAnimator.SetBool("close", true);
+        ContainerAnimator.SetBool("open", false);
     }
 }

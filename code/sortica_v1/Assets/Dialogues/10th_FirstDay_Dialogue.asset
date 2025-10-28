@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: 10th_FirstDay_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: You've made it! You have survived your first day as a Sortica agent!
+    You can now leave your workstation by pulling the exit lever
   voiceClip: {fileID: 8300000, guid: 7bd8451dbb8dd0341bd91ad36fc4ba1d, type: 3}

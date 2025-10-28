@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e4e71e1e55a8a479ed4d11910706ec, type: 3}
   m_Name: 4th_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
-  subtitleText: Your job is to put matter into this contention unit in the right
-    order. By doing this, you will slowly rebuild Sorting Street
+  subtitleText: Your job is to put that programmable matter into this contention
+    unit in the right order. By doing this, you will slowly rebuild Sorting Street
   voiceClip: {fileID: 8300000, guid: f8e82dc3552d28e409a6244bab052f20, type: 3}

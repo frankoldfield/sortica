@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75e4e71e1e55a8a479ed4d11910706ec, type: 3}
-  m_Name: 6th_Discarded_dialogue
+  m_Name: hint_lifo
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
-  subtitleText: Interact with me if you need any hints! You'll be discarded if you
-    don't perform by the way... hehe
-  voiceClip: {fileID: 8300000, guid: 54596f16abbec1044980ddb16513b23a, type: 3}
+  subtitleText: LIFO Algorithm means Last-In-First-Out, which is a stack behaviour,
+    the last item to come through is the first one to go out.
+  voiceClip: {fileID: 8300000, guid: 3a6834ce6624c74488502e790f1b96f7, type: 3}
