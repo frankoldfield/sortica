@@ -102,7 +102,7 @@ public class ContentionUnit : MonoBehaviour
         // Convert sequence to string array for logging
         string[] sequenceStrings = System.Array.ConvertAll(currentExpectedSequence, x => x.ToString());
 
-        AnalyticsLogger.Instance.LogEvent("contentionInitialized", new
+        AnalyticsLogger.Instance.LogEvent("contentionInitialized", new ContentionInitializedData
         {
             level = level,
             expectedSequence = sequenceStrings,
@@ -182,7 +182,7 @@ public class ContentionUnit : MonoBehaviour
         {
             currentBuildingStages[stageIndex].SetActive(true);
 
-            AnalyticsLogger.Instance.LogEvent("buildingStageRevealed", new
+            AnalyticsLogger.Instance.LogEvent("buildingStageRevealed", new BuildingStageRevealedData
             {
                 level = currentLevel,
                 stage = stageIndex,
@@ -242,7 +242,7 @@ public class ContentionUnit : MonoBehaviour
 
     void OnCorrectMatter(MaterialType droppedType, int step)
     {
-        AnalyticsLogger.Instance.LogEvent("contentionCorrect", new
+        AnalyticsLogger.Instance.LogEvent("contentionCorrect", new ContentionCorrectData
         {
             level = currentLevel,
             materialType = droppedType.ToString(),
@@ -258,7 +258,7 @@ public class ContentionUnit : MonoBehaviour
 
     void OnWrongMatter(MaterialType droppedType, MaterialType expectedType, int step)
     {
-        AnalyticsLogger.Instance.LogEvent("contentionError", new
+        AnalyticsLogger.Instance.LogEvent("contentionError", new ContentionErrorData
         {
             level = currentLevel,
             droppedMaterial = droppedType.ToString(),
@@ -275,7 +275,7 @@ public class ContentionUnit : MonoBehaviour
     {
         isBuildingComplete = true;
 
-        AnalyticsLogger.Instance.LogEvent("buildingComplete", new
+        AnalyticsLogger.Instance.LogEvent("buildingComplete", new BuildingCompleteData
         {
             level = currentLevel,
             totalSteps = currentExpectedSequence.Length,
@@ -289,11 +289,11 @@ public class ContentionUnit : MonoBehaviour
 
             // Make building grabbable
             currentCompletedBuilding.GetComponent<BuildingPlacement>().isCompleted = true;
-            //UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable = currentCompletedBuilding.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-            //if (grabInteractable != null)
-            //{
-            //    grabInteractable.selectEntered.AddListener(OnBuildingGrabbed);
-            //}
+            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable = currentCompletedBuilding.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            if (grabInteractable != null)
+            {
+                grabInteractable.selectEntered.AddListener(OnBuildingGrabbed);
+            }
         }
 
         // Fill bar to 100%
@@ -304,7 +304,7 @@ public class ContentionUnit : MonoBehaviour
 
     void OnBuildingGrabbed(SelectEnterEventArgs args)
     {
-        AnalyticsLogger.Instance.LogEvent("buildingGrabbed", new
+        AnalyticsLogger.Instance.LogEvent("buildingGrabbed", new BuildingGrabbedData
         {
             level = currentLevel
         });

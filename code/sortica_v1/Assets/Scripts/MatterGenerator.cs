@@ -36,7 +36,7 @@ public class MatterGenerator : MonoBehaviour
         // Convert sequence to string array for logging
         string[] sequenceStrings = System.Array.ConvertAll(sequence, x => x.ToString());
 
-        AnalyticsLogger.Instance.LogEvent("generatorInitialized", new
+        AnalyticsLogger.Instance.LogEvent("generatorInitialized", new GeneratorInitializedData
         {
             level = level,
             totalMatter = generationQueue.Count,
@@ -51,7 +51,7 @@ public class MatterGenerator : MonoBehaviour
     {
         if (generationQueue.Count == 0)
         {
-            AnalyticsLogger.Instance.LogEvent("generatorEmpty", new
+            AnalyticsLogger.Instance.LogEvent("generatorEmpty", new GeneratorEmptyData
             {
                 level = currentLevel
             });
@@ -90,7 +90,7 @@ public class MatterGenerator : MonoBehaviour
 
         canGenerate = false; // Wait for pickup before generating next
 
-        AnalyticsLogger.Instance.LogEvent("generatorSpawned", new
+        AnalyticsLogger.Instance.LogEvent("generatorSpawned", new GeneratorSpawnedData
         {
             level = currentLevel,
             materialType = materialType.ToString(),

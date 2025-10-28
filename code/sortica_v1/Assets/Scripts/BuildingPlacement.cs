@@ -66,15 +66,15 @@ public class BuildingPlacement : MonoBehaviour
             }
             
             isPlaced = true;
-            
-            AnalyticsLogger.Instance.LogEvent("buildingPlaced", new 
-            { 
+
+            AnalyticsLogger.Instance.LogEvent("buildingPlaced", new BuildingPlacedData
+            {
                 level = currentLevel,
                 distanceFromTarget = distance,
                 placementAccurate = distance <= placementRadius / 2,
                 holdDuration = holdDuration
             });
-            
+
             Debug.Log($"✓ Building placed in street! Level complete!");
             
             // Notify MasterScript that building was placed

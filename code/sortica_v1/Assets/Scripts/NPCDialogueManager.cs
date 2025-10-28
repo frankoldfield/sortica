@@ -12,7 +12,6 @@ public enum DialogueStage
     Introduction,
     Level2,
     FinishedGame
-
 }
 
 public class NPCDialogueManager : MonoBehaviour
@@ -22,6 +21,7 @@ public class NPCDialogueManager : MonoBehaviour
     [SerializeField] private DialogueLine[] Introduction_dialogueLines;
     [SerializeField] private DialogueLine[] Level2_dialogueLines;
     [SerializeField] private DialogueLine[] FinishedGame_dialogueLines;
+
     [Header("References")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Canvas subtitleCanvas;
@@ -36,7 +36,7 @@ public class NPCDialogueManager : MonoBehaviour
     public Dictionary<DialogueStage, DialogueLine[]> dialogueDictionary;
 
     public Animator SupervisorAnimator;
-    List<int> FalseAnimations = new List<int> {1, 3};
+    List<int> FalseAnimations = new List<int> { 1, 3 };
 
     private void Start()
     {
@@ -48,6 +48,7 @@ public class NPCDialogueManager : MonoBehaviour
             {DialogueStage.Level2, Level2_dialogueLines },
             {DialogueStage.FinishedGame, FinishedGame_dialogueLines },
         };
+
         // Hide subtitles initially
         subtitleCanvas.gameObject.SetActive(true);
 
@@ -61,31 +62,17 @@ public class NPCDialogueManager : MonoBehaviour
         interactable.selectEntered.RemoveListener(OnNPCInteracted);
     }
 
-
-    public void Update()
-    {
-        
-        //if (InAnimation) 
-        //{
-        //    AnimatorStateInfo animStateInfo = SupervisorAnimator.GetCurrentAnimatorStateInfo(0);
-        //    if (!animStateInfo.IsTag("idle") && animStateInfo.normalizedTime >= 1) 
-        //    {
-        //        int new_index = SupervisorAnimator.GetInteger("animation_index") + 1;
-        //        Debug.Log("New index: "+new_index);
-        //        SupervisorAnimator.SetInteger("animation_index", new_index);
-        //        if (!FalseAnimations.Contains(new_index))
-        //        {
-        //            Debug.Log("InAnimation is now false");
-        //            InAnimation = false;
-        //        }
-                
-        //    }
-        //}
-    }
-
     private void OnNPCInteracted(SelectEnterEventArgs args)
     {
-        
+        // Log NPC interaction
+        AnalyticsLogger.Instance.LogEvent("npcInteracted", new NPCInteractedData
+        {
+            currentStage = currentStage.ToString(),
+            globalStateIndex = globalStateIndex,
+            currentLineIndex = currentLineIndex,
+            isPlaying = isPlaying
+        });
+
         if (currentStage.Equals(DialogueStage.NotSpeaking))
         {
             return;
@@ -94,17 +81,16 @@ public class NPCDialogueManager : MonoBehaviour
         DialogueLine[] dialogueLines = dialogueDictionary[currentStage];
 
         // First interaction starts dialogue
-
-        if (SupervisorAnimator.GetCurrentAnimatorStateInfo(0).IsTag("interactable") && !isPlaying) 
+        if (SupervisorAnimator.GetCurrentAnimatorStateInfo(0).IsTag("interactable") && !isPlaying)
         {
             int animation_index;
-            Debug.Log("globalStateIndex: "+ globalStateIndex);
+            Debug.Log("globalStateIndex: " + globalStateIndex);
             Debug.Log("Animation index= " + SupervisorAnimator.GetInteger("animation_index"));
+
             switch (globalStateIndex)
             {
                 case 0:
                     //va a table_idle
-                    
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
                     globalStateIndex++;
@@ -113,7 +99,7 @@ public class NPCDialogueManager : MonoBehaviour
                 case 1:
                     //primer diálogo de welcome
                     PlayCurrentLine(dialogueLines);
-                    
+
                     if (!currentStage.Equals(DialogueStage.Hints))
                     {
                         globalStateIndex++;
@@ -142,18 +128,15 @@ public class NPCDialogueManager : MonoBehaviour
                     //SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
                     if (!currentStage.Equals(DialogueStage.Hints))
                     {
-                        
                         globalStateIndex++;
                     }
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 5:
-                    
                     if (!currentStage.Equals(DialogueStage.Hints) && !currentStage.Equals(DialogueStage.NotSpeaking))
                     {
                         animation_index = SupervisorAnimator.GetInteger("animation_index");
                         SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
-                        
                     }
                     globalStateIndex++;
                     PlayCurrentLine(dialogueLines);
@@ -163,7 +146,6 @@ public class NPCDialogueManager : MonoBehaviour
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 7:
-
                     if (!currentStage.Equals(DialogueStage.Hints))
                     {
                         globalStateIndex++;
@@ -203,24 +185,16 @@ public class NPCDialogueManager : MonoBehaviour
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 12:
-                    
                     PlayCurrentLine(dialogueLines);
                     break;
                 default:
-
                     break;
             }
-
-            
-
-            
         }
-        
     }
 
     private void PlayCurrentLine(DialogueLine[] dialogueLines)
     {
-        
         if (currentStage.Equals(DialogueStage.NotSpeaking))
         {
             return;
@@ -230,15 +204,13 @@ public class NPCDialogueManager : MonoBehaviour
             if (currentStage.Equals(DialogueStage.Hints))
             {
                 currentLineIndex = 0;
-            } 
+            }
             else
             {
                 EndDialogue();
                 return;
             }
-            
         }
-
 
         DialogueLine currentLine = dialogueLines[currentLineIndex];
 
@@ -274,10 +246,26 @@ public class NPCDialogueManager : MonoBehaviour
         currentLineIndex = 0;
         isPlaying = false;
         currentStage = dialogue;
+
+        // Log dialogue start
+        AnalyticsLogger.Instance.LogEvent("dialogueStarted", new DialogueStartedData
+        {
+            dialogueStage = dialogue.ToString(),
+            globalStateIndex = globalStateIndex,
+            totalLines = dialogueDictionary[dialogue].Length
+        });
     }
 
     public void EndDialogue()
     {
+        // Log dialogue end
+        AnalyticsLogger.Instance.LogEvent("dialogueEnded", new DialogueEndedData
+        {
+            dialogueStage = currentStage.ToString(),
+            linesPlayed = currentLineIndex,
+            globalStateIndex = globalStateIndex
+        });
+
         subtitleCanvas.gameObject.SetActive(false);
         currentLineIndex = 0;
         isPlaying = false;
@@ -289,9 +277,5 @@ public class NPCDialogueManager : MonoBehaviour
         }
 
         currentStage = DialogueStage.NotSpeaking;
-
-        
     }
-
-
 }
