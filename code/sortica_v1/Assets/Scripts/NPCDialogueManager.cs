@@ -8,18 +8,20 @@ using System.Linq;
 public enum DialogueStage
 {
     NotSpeaking,
-    Hints,
+    Hints1,
     Introduction,
     Level2,
+    Hints2,
     FinishedGame
 }
 
 public class NPCDialogueManager : MonoBehaviour
 {
     [Header("Dialogue Data")]
-    [SerializeField] private DialogueLine[] Hints_dialogueLines;
+    [SerializeField] private DialogueLine[] Hints_Level1_dialogueLines;
     [SerializeField] private DialogueLine[] Introduction_dialogueLines;
     [SerializeField] private DialogueLine[] Level2_dialogueLines;
+    [SerializeField] private DialogueLine[] Hints_Level2_dialogueLines;
     [SerializeField] private DialogueLine[] FinishedGame_dialogueLines;
 
     [Header("References")]
@@ -36,16 +38,31 @@ public class NPCDialogueManager : MonoBehaviour
     public Dictionary<DialogueStage, DialogueLine[]> dialogueDictionary;
 
     public Animator SupervisorAnimator;
+    public Animator MouthAnimator;
+
+    public GameObject GeneratorParticles;
+    public GameObject ContentionParticles;
+
+    private ParticleSystem GeneratorParticleSystem;
+    private ParticleSystem ContentionParticleSystem;
+
     List<int> FalseAnimations = new List<int> { 1, 3 };
 
     private void Start()
     {
+
+        GeneratorParticleSystem = GeneratorParticles.GetComponent<ParticleSystem>();
+        ContentionParticleSystem = ContentionParticles.GetComponent<ParticleSystem>();
+        GeneratorParticles.SetActive(false);
+        ContentionParticles.SetActive(false);
+
         dialogueDictionary = new Dictionary<DialogueStage, DialogueLine[]>()
         {
             {DialogueStage.NotSpeaking, new DialogueLine[0] },
-            {DialogueStage.Hints, Hints_dialogueLines },
+            {DialogueStage.Hints1, Hints_Level1_dialogueLines },
             {DialogueStage.Introduction, Introduction_dialogueLines },
             {DialogueStage.Level2, Level2_dialogueLines },
+            {DialogueStage.Hints2, Hints_Level2_dialogueLines },
             {DialogueStage.FinishedGame, FinishedGame_dialogueLines },
         };
 
@@ -62,7 +79,7 @@ public class NPCDialogueManager : MonoBehaviour
         interactable.selectEntered.RemoveListener(OnNPCInteracted);
     }
 
-    private void OnNPCInteracted(SelectEnterEventArgs args)
+    public void OnNPCInteracted(SelectEnterEventArgs args)
     {
         // Log NPC interaction
         AnalyticsLogger.Instance.LogEvent("npcInteracted", new NPCInteractedData
@@ -90,54 +107,47 @@ public class NPCDialogueManager : MonoBehaviour
             switch (globalStateIndex)
             {
                 case 0:
-                    //va a table_idle
+                    //Welcome! I'm your supervisor...
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
                     globalStateIndex++;
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 1:
-                    //primer diálogo de welcome
+                    //See how I've changed size...
                     PlayCurrentLine(dialogueLines);
 
-                    if (!currentStage.Equals(DialogueStage.Hints))
-                    {
-                        globalStateIndex++;
-                    }
+                    globalStateIndex++;
                     break;
                 case 2:
+                    //Different types of programmable matter....
+
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
-                    if (!currentStage.Equals(DialogueStage.Hints))
-                    {
-                        globalStateIndex++;
-                    }
+                    globalStateIndex++;
                     PlayCurrentLine(dialogueLines);
+                    GeneratorParticles.SetActive(true);
+                    
+
                     break;
                 case 3:
+                    //Your job is to put programmable matter into this contention unit...
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
-                    if (!currentStage.Equals(DialogueStage.Hints))
-                    {
-                        globalStateIndex++;
-                    }
+                    globalStateIndex++;
                     PlayCurrentLine(dialogueLines);
+                    ContentionParticles.SetActive(true);
+                   
                     break;
                 case 4:
-                    //animation_index = SupervisorAnimator.GetInteger("animation_index");
-                    //SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
-                    if (!currentStage.Equals(DialogueStage.Hints))
-                    {
-                        globalStateIndex++;
-                    }
+                    //Pull the reset lever...
+                    globalStateIndex++;
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 5:
-                    if (!currentStage.Equals(DialogueStage.Hints) && !currentStage.Equals(DialogueStage.NotSpeaking))
-                    {
-                        animation_index = SupervisorAnimator.GetInteger("animation_index");
-                        SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
-                    }
+                    //Interact with me if you need any hints...
+                    animation_index = SupervisorAnimator.GetInteger("animation_index");
+                    SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
                     globalStateIndex++;
                     PlayCurrentLine(dialogueLines);
                     break;
@@ -146,45 +156,60 @@ public class NPCDialogueManager : MonoBehaviour
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 7:
-                    if (!currentStage.Equals(DialogueStage.Hints))
+                    //Level 1 starts + First hint and hint loop AND WHEN LEVEL 1 FINISHED, GOOD JOB, AT LEAST...
+                    if (!currentStage.Equals(DialogueStage.Hints1))
                     {
                         globalStateIndex++;
                     }
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 8:
+                    //Shit, the generator is messed up!
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
-                    if (!currentStage.Equals(DialogueStage.Hints))
+                    if (!currentStage.Equals(DialogueStage.Hints1))
                     {
                         globalStateIndex++;
                     }
                     PlayCurrentLine(dialogueLines);
+
+                    Color newColor = new Color(152, 0, 0, 255);
+                    GeneratorParticles.GetComponent<Renderer>().material.SetColor("_EmissionColor", newColor);
+                    GeneratorParticleSystem.startSpeed = 5;
+
+                    ContentionParticles.GetComponent<Renderer>().material.SetColor("_EmissionColor", newColor);
+                    ContentionParticleSystem.startSpeed = 5;
                     break;
                 case 9:
+                    //Well gg...
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
-                    if (!currentStage.Equals(DialogueStage.Hints))
+                    if (!currentStage.Equals(DialogueStage.Hints2))
                     {
                         globalStateIndex++;
                     }
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 10:
-                    if (!currentStage.Equals(DialogueStage.Hints))
+                    //Skipped for some reason
+                    if (!currentStage.Equals(DialogueStage.Hints2))
                     {
                         globalStateIndex++;
                     }
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 11:
-                    if (!currentStage.Equals(DialogueStage.Hints))
+                    //First LIFO hint and hint loop for level 2
+                    if (!currentStage.Equals(DialogueStage.Hints2))
                     {
                         globalStateIndex++;
                     }
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 12:
+                    //You've made it...
+                    GeneratorParticles.SetActive(false);
+                    ContentionParticles.SetActive(false);
                     PlayCurrentLine(dialogueLines);
                     break;
                 default:
@@ -193,7 +218,7 @@ public class NPCDialogueManager : MonoBehaviour
         }
     }
 
-    private void PlayCurrentLine(DialogueLine[] dialogueLines)
+    public void PlayCurrentLine(DialogueLine[] dialogueLines)
     {
         if (currentStage.Equals(DialogueStage.NotSpeaking))
         {
@@ -201,7 +226,7 @@ public class NPCDialogueManager : MonoBehaviour
         }
         else if (currentLineIndex >= dialogueLines.Length)
         {
-            if (currentStage.Equals(DialogueStage.Hints))
+            if (currentStage.Equals(DialogueStage.Hints1) )
             {
                 currentLineIndex = 0;
             }
@@ -224,6 +249,8 @@ public class NPCDialogueManager : MonoBehaviour
 
         isPlaying = true;
 
+        //Start talking animation
+        MouthAnimator.SetBool("talking", true);
         // Start checking when audio finishes
         StartCoroutine(WaitForAudioToFinish());
 
@@ -237,8 +264,13 @@ public class NPCDialogueManager : MonoBehaviour
         {
             yield return null;
         }
-
+        //Disable talking animation
         isPlaying = false;
+        MouthAnimator.SetBool("talking", false);
+        if (globalStateIndex == 8 || globalStateIndex == 9) 
+        {
+            OnNPCInteracted(null);
+        }
     }
 
     public void StartDialogue(DialogueStage dialogue)

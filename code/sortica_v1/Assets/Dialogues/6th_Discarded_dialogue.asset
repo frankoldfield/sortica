@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 6th_Discarded_dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: Interact with me if you need any hints! You'll be discarded if you
-    don't perform by the way... hehe
+    don't perform, by the way... hehe
   voiceClip: {fileID: 8300000, guid: 54596f16abbec1044980ddb16513b23a, type: 3}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 2nd_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: See how I've changed size? That's because I'm made of programmable
-    matter
+    matter. As a new Sorting agent, you will have to work with programmable matter!
   voiceClip: {fileID: 8300000, guid: 17de26b2536492a4f98082e2d71d206c, type: 3}

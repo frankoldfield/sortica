@@ -56,9 +56,10 @@ public class BuildingPlacement : MonoBehaviour
         if (isCompleted)
             {
             // Snap to placement zone
-            transform.position = placementZone.position;
-            transform.rotation = placementZone.rotation;
-            
+            //transform.position = placementZone.position;
+            //transform.rotation = placementZone.rotation;
+            Animator animator = GetComponent<Animator>();
+            animator.SetBool("final", true);
             // Disable grabbing
             if (grabInteractable != null)
             {

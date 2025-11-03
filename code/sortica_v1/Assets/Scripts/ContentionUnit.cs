@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class ContentionUnit : MonoBehaviour
 {
@@ -61,7 +62,9 @@ public class ContentionUnit : MonoBehaviour
             worldSpaceCanvas.renderMode = RenderMode.WorldSpace;
         }
         level1CompletedBuilding.SetActive(false);
+        level1CompletedBuilding.GetComponent<XRGrabInteractable>().enabled = false;
         level2CompletedBuilding.SetActive(false);
+        level2CompletedBuilding.GetComponent<XRGrabInteractable>().enabled = false;
     }
 
     public void InitializeForLevel(string level)
@@ -181,7 +184,7 @@ public class ContentionUnit : MonoBehaviour
         if (currentBuildingStages[stageIndex] != null)
         {
             currentBuildingStages[stageIndex].SetActive(true);
-
+           
             AnalyticsLogger.Instance.LogEvent("buildingStageRevealed", new BuildingStageRevealedData
             {
                 level = currentLevel,
@@ -281,15 +284,18 @@ public class ContentionUnit : MonoBehaviour
             totalSteps = currentExpectedSequence.Length,
             algorithm = currentLevel == "level1" ? "FIFO" : "LIFO"
         });
+        
 
         // Keep all building stages visible, but now show the complete grabbable version
         if (currentCompletedBuilding != null)
         {
             currentCompletedBuilding.SetActive(true);
-
+            Animator animator = currentCompletedBuilding.GetComponent<Animator>();
+            animator.SetBool("rotating", true);
             // Make building grabbable
             currentCompletedBuilding.GetComponent<BuildingPlacement>().isCompleted = true;
-            UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable = currentCompletedBuilding.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            XRGrabInteractable grabInteractable = currentCompletedBuilding.GetComponent<XRGrabInteractable>();
+            grabInteractable.enabled = true;
             if (grabInteractable != null)
             {
                 grabInteractable.selectEntered.AddListener(OnBuildingGrabbed);
@@ -304,10 +310,13 @@ public class ContentionUnit : MonoBehaviour
 
     void OnBuildingGrabbed(SelectEnterEventArgs args)
     {
+        Animator animator = currentCompletedBuilding.GetComponent<Animator>();
+        animator.SetBool("rotating", false);
         AnalyticsLogger.Instance.LogEvent("buildingGrabbed", new BuildingGrabbedData
         {
             level = currentLevel
         });
+        //PARAR ANIMACIÓN
     }
 
     public int GetCurrentStep()

@@ -98,7 +98,8 @@ public class MasterScript : MonoBehaviour
                 Debug.Log("Empieza primer nivel");
                 matterGenerator.InitializeForLevel("level1");
                 contentionUnit.InitializeForLevel("level1");
-                supervisor.StartDialogue(DialogueStage.Hints);
+                supervisor.StartDialogue(DialogueStage.Hints1);
+                supervisor.OnNPCInteracted(null);
                 break;
                 
             case GameStates.First_Finished:
@@ -106,6 +107,8 @@ public class MasterScript : MonoBehaviour
                 level1MovementData = movementTracker.GetMovementData();
                 AnalyticsLogger.Instance.LogLevelComplete("level1", level1MovementData);
                 supervisor.StartDialogue(DialogueStage.Level2);
+                supervisor.OnNPCInteracted(null);
+                supervisor.OnNPCInteracted(null);
                 break;
                 
             case GameStates.Second_Level:
@@ -115,7 +118,8 @@ public class MasterScript : MonoBehaviour
                 // Initialize generator and contention unit for level 2
                 matterGenerator.InitializeForLevel("level2");
                 contentionUnit.InitializeForLevel("level2");
-                supervisor.StartDialogue(DialogueStage.Hints);
+                supervisor.StartDialogue(DialogueStage.Hints2);
+                supervisor.OnNPCInteracted(null);
                 break;
                 
             case GameStates.Second_Finished:
@@ -123,6 +127,7 @@ public class MasterScript : MonoBehaviour
                 level2MovementData = movementTracker.GetMovementData();
                 AnalyticsLogger.Instance.LogLevelComplete("level2", level2MovementData);
                 supervisor.StartDialogue(DialogueStage.FinishedGame);
+                supervisor.OnNPCInteracted(null);
                 break;
                 
             case GameStates.Game_Finished:
@@ -172,7 +177,7 @@ public class MasterScript : MonoBehaviour
             case DialogueStage.NotSpeaking:
 
                 break;
-            case DialogueStage.Hints:
+            case DialogueStage.Hints1:
 
                 break;
             case DialogueStage.Introduction:
@@ -181,6 +186,10 @@ public class MasterScript : MonoBehaviour
                 break;
             case DialogueStage.Level2:
                 game_state = GameStates.Second_Level;
+                break;
+
+            case DialogueStage.Hints2:
+
                 break;
 
             case DialogueStage.FinishedGame:
