@@ -27,6 +27,8 @@ public class MasterScript : MonoBehaviour
     public GameObject Controller;
 
     public Animator ContainerAnimator;
+
+    public Animator HoverAnimator;
     
     private VRMovementTracker movementTracker;
     

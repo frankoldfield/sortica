@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -33,7 +34,9 @@ public class Lever : MonoBehaviour
     {
         
         animator.SetBool("Used", true);
-
+        // Play audio
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
         if (master.game_state.Equals(GameStates.Game_Finished))
         {
             Debug.Log("Exiting the game...");

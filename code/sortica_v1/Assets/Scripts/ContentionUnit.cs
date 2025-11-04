@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEditor.SceneManagement;
 
 public class ContentionUnit : MonoBehaviour
 {
@@ -289,6 +290,10 @@ public class ContentionUnit : MonoBehaviour
         // Keep all building stages visible, but now show the complete grabbable version
         if (currentCompletedBuilding != null)
         {
+            for (int i = 0; i < currentBuildingStages.Length - 1; i++) 
+            {
+                currentBuildingStages[i].SetActive(false);
+            }
             currentCompletedBuilding.SetActive(true);
             Animator animator = currentCompletedBuilding.GetComponent<Animator>();
             animator.SetBool("rotating", true);

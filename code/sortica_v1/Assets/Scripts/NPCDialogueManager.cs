@@ -232,7 +232,7 @@ public class NPCDialogueManager : MonoBehaviour
         }
         else if (currentLineIndex >= dialogueLines.Length)
         {
-            if (currentStage.Equals(DialogueStage.Hints1) )
+            if (currentStage.Equals(DialogueStage.Hints1) || currentStage.Equals(DialogueStage.Hints2))
             {
                 currentLineIndex = 0;
             }
@@ -244,7 +244,8 @@ public class NPCDialogueManager : MonoBehaviour
         }
 
         DialogueLine currentLine = dialogueLines[currentLineIndex];
-
+        MasterScript master = FindFirstObjectByType<MasterScript>();
+        master.HoverAnimator.SetBool("hover", false);
         // Show subtitle
         subtitleCanvas.gameObject.SetActive(true);
         subtitleText.text = currentLine.subtitleText;
@@ -273,9 +274,15 @@ public class NPCDialogueManager : MonoBehaviour
         //Disable talking animation
         isPlaying = false;
         MouthAnimator.SetBool("talking", false);
+        MasterScript master = FindFirstObjectByType<MasterScript>();
+        master.HoverAnimator.SetBool("hover", true);
         if (globalStateIndex == 8 || globalStateIndex == 9) 
         {
             OnNPCInteracted(null);
+        }
+        if (currentStage.Equals(DialogueStage.Hints1) || currentStage.Equals(DialogueStage.Hints2)) 
+        {
+            subtitleCanvas.gameObject.SetActive(false);
         }
     }
 
