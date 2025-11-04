@@ -311,7 +311,6 @@ public class ContentionUnit : MonoBehaviour
     void OnBuildingGrabbed(SelectEnterEventArgs args)
     {
         Animator animator = currentCompletedBuilding.GetComponent<Animator>();
-        animator.SetBool("rotating", false);
         AnalyticsLogger.Instance.LogEvent("buildingGrabbed", new BuildingGrabbedData
         {
             level = currentLevel

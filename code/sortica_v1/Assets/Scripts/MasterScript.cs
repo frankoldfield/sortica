@@ -24,7 +24,8 @@ public class MasterScript : MonoBehaviour
     public MatterGenerator matterGenerator;
     public ContentionUnit contentionUnit;
     public NPCDialogueManager supervisor;
-    
+    public GameObject Controller;
+
     public Animator ContainerAnimator;
     
     private VRMovementTracker movementTracker;
@@ -36,6 +37,7 @@ public class MasterScript : MonoBehaviour
 
     void Start()
     {
+        Controller.SetActive(true);
         game_state = GameStates.Loading_Game;
         previous_state = game_state;
 
@@ -89,6 +91,7 @@ public class MasterScript : MonoBehaviour
                 break;
             case GameStates.Introduction:
                 supervisor.StartDialogue(DialogueStage.Introduction);
+                
                 break;
             case GameStates.First_Level:
                 AnalyticsLogger.Instance.LogEvent("levelStart", new LevelStartData { level = "level1", algorithm = "FIFO" });

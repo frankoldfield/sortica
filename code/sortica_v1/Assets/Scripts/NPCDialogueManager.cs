@@ -111,6 +111,12 @@ public class NPCDialogueManager : MonoBehaviour
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
                     globalStateIndex++;
+                    MasterScript master = FindFirstObjectByType<MasterScript>();
+                    if (master != null)
+                    {
+                        master.Controller.SetActive(false);
+                    }
+                    
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 1:
