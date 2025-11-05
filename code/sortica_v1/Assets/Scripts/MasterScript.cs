@@ -72,7 +72,15 @@ public class MasterScript : MonoBehaviour
             previous_state = game_state;
         }
     }
-    
+
+    public void RestartLevel() 
+    {
+        if (game_state.Equals(GameStates.First_Level) || game_state.Equals(GameStates.Second_Level)) 
+        {
+            game_state = GameStates.Restart_Game;
+        }
+    }
+
     void HandleStateTransition(GameStates fromState, GameStates toState)
     {
         // Log the state change
@@ -85,6 +93,31 @@ public class MasterScript : MonoBehaviour
         // Handle specific transitions
         switch (toState)
         {
+            case GameStates.Restart_Game:
+                if (fromState.Equals(GameStates.First_Level))
+                {
+                    
+                    AnalyticsLogger.Instance.LogEvent("levelStart", new LevelRestartStartData { level = "level1" });
+                    matterGenerator.restartLevel("level1");
+
+                    contentionUnit.level1CompletedBuilding.GetComponent<BuildingPlacement>().RestartMovement();
+
+                    contentionUnit.InitializeForLevel("level1");
+                    game_state = GameStates.First_Level;
+                }
+                else if (fromState.Equals(GameStates.Second_Level))
+                {
+                    AnalyticsLogger.Instance.LogEvent("levelStart", new LevelRestartStartData { level = "level2" });
+                    matterGenerator.restartLevel("level2");
+                    contentionUnit.level2CompletedBuilding.GetComponent<BuildingPlacement>().RestartMovement();
+                    contentionUnit.InitializeForLevel("level2");
+                    game_state = GameStates.Second_Level;
+                }
+                else 
+                {
+                    AnalyticsLogger.Instance.LogEvent("levelStart", new LevelRestartStartData { level = "INVALID" });
+                }
+                break;
             case GameStates.Loading_Game:
 
                 break;
@@ -96,13 +129,17 @@ public class MasterScript : MonoBehaviour
                 
                 break;
             case GameStates.First_Level:
-                AnalyticsLogger.Instance.LogEvent("levelStart", new LevelStartData { level = "level1", algorithm = "FIFO" });
-                movementTracker.ResetTracking();
+                if (!fromState.Equals(GameStates.Restart_Game)) 
+                {
+                    AnalyticsLogger.Instance.LogEvent("levelStart", new LevelStartData { level = "level1", algorithm = "FIFO" });
+                    movementTracker.ResetTracking();
 
-                // Initialize generator and contention unit for level 1
-                //Debug.Log("Empieza primer nivel");
-                matterGenerator.InitializeForLevel("level1");
-                contentionUnit.InitializeForLevel("level1");
+                    // Initialize generator and contention unit for level 1
+                    //Debug.Log("Empieza primer nivel");
+                    matterGenerator.InitializeForLevel("level1");
+                    contentionUnit.InitializeForLevel("level1");
+                }
+                
                 supervisor.StartDialogue(DialogueStage.Hints1);
                 supervisor.OnNPCInteracted(null);
                 break;
@@ -117,12 +154,15 @@ public class MasterScript : MonoBehaviour
                 break;
                 
             case GameStates.Second_Level:
-                AnalyticsLogger.Instance.LogEvent("levelStart", new LevelStartData { level = "level2", algorithm = "LIFO" });
-                movementTracker.ResetTracking();
-                
-                // Initialize generator and contention unit for level 2
-                matterGenerator.InitializeForLevel("level2");
-                contentionUnit.InitializeForLevel("level2");
+                if (!fromState.Equals(GameStates.Restart_Game))
+                {
+                    AnalyticsLogger.Instance.LogEvent("levelStart", new LevelStartData { level = "level2", algorithm = "LIFO" });
+                    movementTracker.ResetTracking();
+
+                    // Initialize generator and contention unit for level 2
+                    matterGenerator.InitializeForLevel("level2");
+                    contentionUnit.InitializeForLevel("level2");
+                }
                 supervisor.StartDialogue(DialogueStage.Hints2);
                 supervisor.OnNPCInteracted(null);
                 break;

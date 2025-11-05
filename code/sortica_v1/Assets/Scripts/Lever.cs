@@ -45,6 +45,7 @@ public class Lever : MonoBehaviour
         else
         {
             Debug.Log("Restarting the game...");
+            master.RestartLevel();
         }
 
     }

@@ -16,10 +16,23 @@ public class MatterGenerator : MonoBehaviour
 
     private Queue<MaterialType> generationQueue;
     private GameObject currentMatterBall;
+    
     private MatterBall currentMatterBallScript;
     private bool canGenerate = true;
     private string currentLevel;
 
+    public List<GameObject> currentMatterBalls = new List<GameObject>();
+
+
+    public void restartLevel(string level)
+    {
+        foreach (GameObject obj in currentMatterBalls)
+        {
+            Destroy(obj);
+        }
+        currentMatterBalls.Clear();
+        InitializeForLevel(level);
+    }
     public void InitializeForLevel(string level)
     {
         currentLevel = level;
@@ -73,7 +86,7 @@ public class MatterGenerator : MonoBehaviour
 
         // Instantiate the matter ball
         currentMatterBall = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
-
+        currentMatterBalls.Add(currentMatterBall);
         // Get the MatterBall script
         currentMatterBallScript = currentMatterBall.GetComponent<MatterBall>();
         if (currentMatterBallScript != null)

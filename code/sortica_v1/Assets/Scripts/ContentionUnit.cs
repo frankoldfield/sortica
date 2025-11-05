@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEditor.SceneManagement;
+using Unity.VisualScripting;
 
 public class ContentionUnit : MonoBehaviour
 {
@@ -154,6 +155,8 @@ public class ContentionUnit : MonoBehaviour
             UpdateProgressBar();
 
             // Absorb/destroy the matter ball
+            MatterGenerator matterGenerator = FindFirstObjectByType<MatterGenerator>();
+            matterGenerator.currentMatterBalls.Remove(matterBall.gameObject);
             Destroy(matterBall.gameObject);
 
             // Check if building is complete

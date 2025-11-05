@@ -200,6 +200,11 @@ public class LevelStartData
     public string algorithm;
 }
 
+public class LevelRestartStartData
+{
+    public string level;
+}
+
 [System.Serializable]
 public class TotalMovementData
 {

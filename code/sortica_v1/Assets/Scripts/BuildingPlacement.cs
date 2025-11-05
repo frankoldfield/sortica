@@ -73,6 +73,13 @@ public class BuildingPlacement : MonoBehaviour
             NotifyMasterScript();
         }
     }
+
+    public void RestartMovement() 
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.SetBool("rotating", false);
+        animator.SetBool("final", false);
+    }
     
     void NotifyMasterScript()
     {
