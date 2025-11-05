@@ -76,7 +76,7 @@ public class MasterScript : MonoBehaviour
     void HandleStateTransition(GameStates fromState, GameStates toState)
     {
         // Log the state change
-        //AnalyticsLogger.Instance.LogEvent("stateChanged", new StateChangedData
+        AnalyticsLogger.Instance.LogEvent("stateChanged", new StateChangedData
         {
             fromState = fromState.ToString(),
             toState = toState.ToString()

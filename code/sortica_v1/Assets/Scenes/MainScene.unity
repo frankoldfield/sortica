@@ -369,6 +369,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 7401808343254106002, guid: 1448bacd199fb9340847b1a26775a000,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a5884b37617aea342a724d0976d53e48, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2815,6 +2820,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7458876054403941359, guid: 56048d731d1acfb4baaef2d73c8f5f28,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a5884b37617aea342a724d0976d53e48, type: 2}
+    - target: {fileID: 7566581124943124256, guid: 56048d731d1acfb4baaef2d73c8f5f28,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a5884b37617aea342a724d0976d53e48, type: 2}
     - target: {fileID: 7759188503729647236, guid: 56048d731d1acfb4baaef2d73c8f5f28,
         type: 3}
       propertyPath: m_FillAmount
@@ -9163,6 +9178,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1980934823}
     m_Modifications:
+    - target: {fileID: 66563848721829406, guid: f9a940d076816754e8ec1a6fd6217363,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a5884b37617aea342a724d0976d53e48, type: 2}
     - target: {fileID: 1258945808449256421, guid: f9a940d076816754e8ec1a6fd6217363,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -10500,7 +10520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c801e4c1fca37684798c707544a5f2b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingPlacement
-  placementZone: {fileID: 0}
   placementRadius: 2
   placementIndicator: {fileID: 0}
   isCompleted: 0
@@ -12612,7 +12631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2057731872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12625,7 +12644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c801e4c1fca37684798c707544a5f2b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingPlacement
-  placementZone: {fileID: 0}
   placementRadius: 2
   placementIndicator: {fileID: 0}
   isCompleted: 0
