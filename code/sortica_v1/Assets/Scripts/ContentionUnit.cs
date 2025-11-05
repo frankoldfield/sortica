@@ -15,8 +15,7 @@ public class ContentionUnit : MonoBehaviour
     [Header("Visual Feedback")]
     public Renderer unitRenderer;
     public Color correctColor = Color.green;
-    //public Color errorColor = Color.red;
-    //public Color neutralColor = Color.white;
+
     public float feedbackDuration = 1f;
 
     [Header("Audio Feedback")]
@@ -196,7 +195,7 @@ public class ContentionUnit : MonoBehaviour
                 visibleStages = stageIndex + 1
             });
 
-            Debug.Log($"Building stage {stageIndex + 1}/{currentBuildingStages.Length} revealed: {currentExpectedSequence[stageIndex]}");
+            //Debug.Log($"Building stage {stageIndex + 1}/{currentBuildingStages.Length} revealed: {currentExpectedSequence[stageIndex]}");
         }
         else
         {
@@ -259,7 +258,7 @@ public class ContentionUnit : MonoBehaviour
             progressPercentage = ((step + 1) / (float)currentExpectedSequence.Length) * 100
         });
 
-        Debug.Log($"✓ Correct! Step {step + 1}/{currentExpectedSequence.Length} - {droppedType} placed");
+        //Debug.Log($"✓ Correct! Step {step + 1}/{currentExpectedSequence.Length} - {droppedType} placed");
     }
 
     void OnWrongMatter(MaterialType droppedType, MaterialType expectedType, int step)
@@ -274,7 +273,7 @@ public class ContentionUnit : MonoBehaviour
             algorithm = currentLevel == "level1" ? "FIFO" : "LIFO"
         });
 
-        Debug.Log($"✗ Wrong! Expected {expectedType} but got {droppedType}");
+        //Debug.Log($"✗ Wrong! Expected {expectedType} but got {droppedType}");
     }
 
     void OnBuildingComplete()
@@ -312,7 +311,7 @@ public class ContentionUnit : MonoBehaviour
         // Fill bar to 100%
         UpdateProgressBar();
 
-        Debug.Log($"🎉 Building complete! Player can now grab and place it in the street.");
+        //Debug.Log($"🎉 Building complete! Player can now grab and place it in the street.");
     }
 
     void OnBuildingGrabbed(SelectEnterEventArgs args)

@@ -274,17 +274,6 @@ public class BuildingGrabbedData
 public class BuildingPlacedData
 {
     public string level;
-    public float distanceFromTarget;
-    public bool placementAccurate;
-    public float holdDuration;
-}
-
-[System.Serializable]
-public class BuildingPlacementAttemptData
-{
-    public string level;
-    public float distanceFromTarget;
-    public bool tooFar;
     public float holdDuration;
 }
 

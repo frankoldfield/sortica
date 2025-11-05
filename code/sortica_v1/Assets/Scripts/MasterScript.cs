@@ -76,7 +76,7 @@ public class MasterScript : MonoBehaviour
     void HandleStateTransition(GameStates fromState, GameStates toState)
     {
         // Log the state change
-        AnalyticsLogger.Instance.LogEvent("stateChanged", new StateChangedData
+        //AnalyticsLogger.Instance.LogEvent("stateChanged", new StateChangedData
         {
             fromState = fromState.ToString(),
             toState = toState.ToString()
@@ -100,7 +100,7 @@ public class MasterScript : MonoBehaviour
                 movementTracker.ResetTracking();
 
                 // Initialize generator and contention unit for level 1
-                Debug.Log("Empieza primer nivel");
+                //Debug.Log("Empieza primer nivel");
                 matterGenerator.InitializeForLevel("level1");
                 contentionUnit.InitializeForLevel("level1");
                 supervisor.StartDialogue(DialogueStage.Hints1);

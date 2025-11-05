@@ -55,7 +55,7 @@ public class MatterGenerator : MonoBehaviour
             {
                 level = currentLevel
             });
-            Debug.Log("Generator empty - all matter generated");
+            //Debug.Log("Generator empty - all matter generated");
             return;
         }
 
@@ -97,12 +97,12 @@ public class MatterGenerator : MonoBehaviour
             remainingCount = generationQueue.Count
         });
 
-        Debug.Log($"Generated {materialType}, remaining: {generationQueue.Count}");
+        //Debug.Log($"Generated {materialType}, remaining: {generationQueue.Count}");
     }
 
     void OnCurrentMatterPickedUp()
     {
-        Debug.Log("Generator detected matter pickup!");
+        //Debug.Log("Generator detected matter pickup!");
 
         // Unsubscribe from the event
         if (currentMatterBallScript != null)
