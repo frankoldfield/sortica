@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: Welcome! I'm your supervisor Rolly. Please pay attention as I guide
     you through your first day at work
-  voiceClip: {fileID: 8300000, guid: ed1347a8fb0600f4c9bc4655ea9bbb6e, type: 3}
+  voiceClip: {fileID: 8300000, guid: 332ce811c1ced05499a77f72e6ffc696, type: 3}

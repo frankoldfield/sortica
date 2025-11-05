@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: FIFO Algorithm means First-In-First-Out, which is a simple queue
     behaviour, items go out as they come in.
-  voiceClip: {fileID: 8300000, guid: d11d9452bbf75ae438e81c84d52af4ec, type: 3}
+  voiceClip: {fileID: 8300000, guid: dd122aa6ce8f7084882ff4ad5504018f, type: 3}

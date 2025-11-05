@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e4e71e1e55a8a479ed4d11910706ec, type: 3}
   m_Name: 5th_Restart_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
-  subtitleText: Pull the Reset lever if you want to restart the programmable matter
-  voiceClip: {fileID: 8300000, guid: f0e7a4fa9043704419a14ff6809e2946, type: 3}
+  subtitleText: Pull the lever on your left if you want to restart the programmable
+    matter
+  voiceClip: {fileID: 8300000, guid: 109efbcac454b604db1235a19fd58363, type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 8th_GeneratorMessedUp_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: Shit! The generator is messed up!
-  voiceClip: {fileID: 8300000, guid: 354eceb1d9cf7474cb9a731a7edb7190, type: 3}
+  voiceClip: {fileID: 8300000, guid: 6c59777d40344ab4c8b32245353f56e0, type: 3}

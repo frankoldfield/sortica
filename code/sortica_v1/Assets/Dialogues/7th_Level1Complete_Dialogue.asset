@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 7th_Level1Complete_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: Good job! At least you won't ditch it today... hehe
-  voiceClip: {fileID: 8300000, guid: eec6ec9640ba50b4eb73c8c44faad4fc, type: 3}
+  voiceClip: {fileID: 8300000, guid: 997f519293c8ca443b95b23982d7af27, type: 3}

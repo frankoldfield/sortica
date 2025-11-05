@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: Your job is to put that programmable matter into this contention
     unit in the right order. By doing this, you will slowly rebuild Sorting Street
-  voiceClip: {fileID: 8300000, guid: f8e82dc3552d28e409a6244bab052f20, type: 3}
+  voiceClip: {fileID: 8300000, guid: f2f3311dd18fa4147b08d7bf7921b212, type: 3}

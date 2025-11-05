@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: Interact with me if you need any hints! You'll be discarded if you
     don't perform, by the way... hehe
-  voiceClip: {fileID: 8300000, guid: 54596f16abbec1044980ddb16513b23a, type: 3}
+  voiceClip: {fileID: 8300000, guid: 83d0801b904f4ef4989c55d145d03747, type: 3}

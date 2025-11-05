@@ -276,7 +276,7 @@ public class NPCDialogueManager : MonoBehaviour
         MouthAnimator.SetBool("talking", false);
         MasterScript master = FindFirstObjectByType<MasterScript>();
         master.HoverAnimator.SetBool("hover", true);
-        if (globalStateIndex == 8 || globalStateIndex == 9) 
+        if (globalStateIndex == 1 || globalStateIndex == 2 || globalStateIndex == 3 || globalStateIndex == 4 || globalStateIndex == 5 || globalStateIndex == 6 || globalStateIndex == 8 || globalStateIndex == 9 || globalStateIndex == 10) 
         {
             OnNPCInteracted(null);
         }

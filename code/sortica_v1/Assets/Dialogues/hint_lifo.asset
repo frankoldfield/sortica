@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: LIFO Algorithm means Last-In-First-Out, which is a stack behaviour,
     the last item to come through is the first one to go out.
-  voiceClip: {fileID: 8300000, guid: 3a6834ce6624c74488502e790f1b96f7, type: 3}
+  voiceClip: {fileID: 8300000, guid: a09a1cfc1842c1444bffdf88636cf131, type: 3}

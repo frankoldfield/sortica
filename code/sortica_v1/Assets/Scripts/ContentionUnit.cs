@@ -15,8 +15,8 @@ public class ContentionUnit : MonoBehaviour
     [Header("Visual Feedback")]
     public Renderer unitRenderer;
     public Color correctColor = Color.green;
-    public Color errorColor = Color.red;
-    public Color neutralColor = Color.white;
+    //public Color errorColor = Color.red;
+    //public Color neutralColor = Color.white;
     public float feedbackDuration = 1f;
 
     [Header("Audio Feedback")]
@@ -42,14 +42,16 @@ public class ContentionUnit : MonoBehaviour
     private GameObject currentCompletedBuilding;
     private int currentStep = 0;
     private string currentLevel;
-    private Color originalColor;
+    private Material originalMaterial;
     private bool isBuildingComplete = false;
+    public Material greenMaterial;
+    public Material redMaterial;
 
     void Start()
     {
         if (unitRenderer != null)
         {
-            originalColor = unitRenderer.material.color;
+            originalMaterial = unitRenderer.material;
         }
 
         if (audioSource == null)
@@ -92,7 +94,7 @@ public class ContentionUnit : MonoBehaviour
         // Reset visual state
         if (unitRenderer != null)
         {
-            unitRenderer.material.color = neutralColor;
+            unitRenderer.material = originalMaterial;
         }
 
         // Hide all building stages for current level
@@ -147,7 +149,7 @@ public class ContentionUnit : MonoBehaviour
             currentStep++;
 
             // Show correct feedback
-            StartCoroutine(ShowFeedback(correctColor, correctSound));
+            StartCoroutine(ShowFeedback(greenMaterial, correctSound));
 
             // Update progress bar
             UpdateProgressBar();
@@ -167,7 +169,7 @@ public class ContentionUnit : MonoBehaviour
             OnWrongMatter(droppedType, expectedType, currentStep);
 
             // Show error feedback
-            StartCoroutine(ShowFeedback(errorColor, errorSound));
+            StartCoroutine(ShowFeedback(redMaterial, errorSound));
         }
     }
 
@@ -220,12 +222,12 @@ public class ContentionUnit : MonoBehaviour
         }
     }
 
-    IEnumerator ShowFeedback(Color color, AudioClip sound)
+    IEnumerator ShowFeedback(Material material, AudioClip sound)
     {
         // Change color
         if (unitRenderer != null)
         {
-            unitRenderer.material.color = color;
+            unitRenderer.material = material;
         }
 
         // Play sound
@@ -240,7 +242,7 @@ public class ContentionUnit : MonoBehaviour
         // Return to progress color
         if (unitRenderer != null)
         {
-            unitRenderer.material.color = currentStep > 0 ? correctColor : neutralColor;
+            unitRenderer.material = originalMaterial;
         }
     }
 

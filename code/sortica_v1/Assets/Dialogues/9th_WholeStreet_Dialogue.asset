@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
   subtitleText: Well gg, seems like you won't be getting any sleep tonight! The higher
     ups must want you to finish the whole street asap
-  voiceClip: {fileID: 8300000, guid: a01d3ad77d5cb7a48938bf2262b9fc75, type: 3}
+  voiceClip: {fileID: 8300000, guid: 139b6bdad94ec3f4c8af0e1b0f872a19, type: 3}
