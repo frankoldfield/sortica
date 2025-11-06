@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75e4e71e1e55a8a479ed4d11910706ec, type: 3}
-  m_Name: 10th_FirstDay_Dialogue
+  m_Name: grab_building
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
-  subtitleText: You've made it! You have survived your first day as a Sortica agent!
-    You can now leave your workstation by pulling the lever
-  voiceClip: {fileID: 8300000, guid: 0dcb88c3fa51ee2409ee5ac02294e9a5, type: 3}
+  subtitleText: You have finished your first building! You can grab it and have a
+    closer look at it. Once you release it, it will be positioned in Sorting Street!
+  voiceClip: {fileID: 8300000, guid: f9cb2fef836358b48b12cbc9006294bb, type: 3}
