@@ -7,11 +7,9 @@ using System.Linq;
 
 public enum DialogueStage
 {
-    hey_dialogue,
     NotSpeaking,
     Hints1,
     Introduction,
-    grabBuilding,
     Level2,
     Hints2,
     FinishedGame
@@ -20,10 +18,8 @@ public enum DialogueStage
 public class NPCDialogueManager : MonoBehaviour
 {
     [Header("Dialogue Data")]
-    [SerializeField] private DialogueLine[] hey_dialogue;
     [SerializeField] private DialogueLine[] Hints_Level1_dialogueLines;
     [SerializeField] private DialogueLine[] Introduction_dialogueLines;
-    [SerializeField] private DialogueLine[] grabBuilding_dialogueLines;
     [SerializeField] private DialogueLine[] Level2_dialogueLines;
     [SerializeField] private DialogueLine[] Hints_Level2_dialogueLines;
     [SerializeField] private DialogueLine[] FinishedGame_dialogueLines;
@@ -34,7 +30,7 @@ public class NPCDialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI subtitleText;
     [SerializeField] private XRSimpleInteractable interactable;
 
-    public int currentLineIndex = 0;
+    private int currentLineIndex = 0;
     private int globalStateIndex = 0;
     private bool isPlaying = false;
     private DialogueStage currentStage;
@@ -62,16 +58,14 @@ public class NPCDialogueManager : MonoBehaviour
 
         dialogueDictionary = new Dictionary<DialogueStage, DialogueLine[]>()
         {
-            {DialogueStage.hey_dialogue, hey_dialogue },
             {DialogueStage.NotSpeaking, new DialogueLine[0] },
             {DialogueStage.Hints1, Hints_Level1_dialogueLines },
             {DialogueStage.Introduction, Introduction_dialogueLines },
-            {DialogueStage.grabBuilding, grabBuilding_dialogueLines },
             {DialogueStage.Level2, Level2_dialogueLines },
             {DialogueStage.Hints2, Hints_Level2_dialogueLines },
             {DialogueStage.FinishedGame, FinishedGame_dialogueLines },
         };
-        
+
         // Hide subtitles initially
         subtitleCanvas.gameObject.SetActive(true);
 
@@ -114,10 +108,15 @@ public class NPCDialogueManager : MonoBehaviour
             {
                 case 0:
                     //Welcome! I'm your supervisor...
-                    
                     animation_index = SupervisorAnimator.GetInteger("animation_index");
                     SupervisorAnimator.SetInteger("animation_index", animation_index + 1);
                     globalStateIndex++;
+                    MasterScript master = FindFirstObjectByType<MasterScript>();
+                    if (master != null)
+                    {
+                        master.Controller.SetActive(false);
+                    }
+                    
                     PlayCurrentLine(dialogueLines);
                     break;
                 case 1:

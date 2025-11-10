@@ -1,7 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.UIElements;
 
 public enum GameStates
 {
@@ -34,7 +31,6 @@ public class MasterScript : MonoBehaviour
     public Animator HoverAnimator;
     
     private VRMovementTracker movementTracker;
-    public bool buildingCompleted = false;
     
     // Movement data storage
     private MovementData level1MovementData;
@@ -62,7 +58,8 @@ public class MasterScript : MonoBehaviour
         // Read progress
         // Load progress
         // Start world
-        
+        game_state = GameStates.Introduction;
+        ContainerAnimator.SetBool("open", true);
     }
 
     void Update()
@@ -71,15 +68,14 @@ public class MasterScript : MonoBehaviour
         if (game_state != previous_state)
         {
             Debug.Log("Stage transition from "+ previous_state.ToString()+" to "+ game_state.ToString());
-            previous_state = game_state;
             HandleStateTransition(previous_state, game_state);
-            
+            previous_state = game_state;
         }
     }
 
     public void RestartLevel() 
     {
-        if ((game_state.Equals(GameStates.First_Level) || game_state.Equals(GameStates.Second_Level)) && !buildingCompleted) 
+        if (game_state.Equals(GameStates.First_Level) || game_state.Equals(GameStates.Second_Level)) 
         {
             game_state = GameStates.Restart_Game;
         }
@@ -122,11 +118,11 @@ public class MasterScript : MonoBehaviour
                     AnalyticsLogger.Instance.LogEvent("levelStart", new LevelRestartStartData { level = "INVALID" });
                 }
                 break;
+            case GameStates.Loading_Game:
+
+                break;
             case GameStates.Start:
-                StartCoroutine(FirstDialogue());
-                game_state = GameStates.Introduction;
-                ContainerAnimator.SetBool("open", true);
-                Controller.SetActive(false);
+
                 break;
             case GameStates.Introduction:
                 supervisor.StartDialogue(DialogueStage.Introduction);
@@ -160,7 +156,6 @@ public class MasterScript : MonoBehaviour
             case GameStates.Second_Level:
                 if (!fromState.Equals(GameStates.Restart_Game))
                 {
-                    buildingCompleted = false;
                     AnalyticsLogger.Instance.LogEvent("levelStart", new LevelStartData { level = "level2", algorithm = "LIFO" });
                     movementTracker.ResetTracking();
 
@@ -206,34 +201,7 @@ public class MasterScript : MonoBehaviour
                 break;
         }
     }
-
-    public void playGrabBuilding() 
-    {
-        StartCoroutine(GrabDialogue());
-    }
-
-    IEnumerator GrabDialogue()
-    {
-
-        // Wait
-        Debug.Log("Diálogo grab building!");
-        yield return new WaitForSeconds(0.5f);
-        supervisor.currentLineIndex = 0;
-        supervisor.PlayCurrentLine(supervisor.dialogueDictionary[DialogueStage.grabBuilding]);
-        supervisor.currentLineIndex = 0;
-
-    }
-
-    IEnumerator FirstDialogue()
-    {
-
-        // Wait
-        yield return new WaitForSeconds(2.5f);
-        supervisor.PlayCurrentLine(supervisor.dialogueDictionary[DialogueStage.hey_dialogue]);
-        supervisor.currentLineIndex = 0;
-
-    }
-
+    
     // Called by BuildingPlacement when building is successfully placed
     public void OnBuildingPlaced(string level)
     {

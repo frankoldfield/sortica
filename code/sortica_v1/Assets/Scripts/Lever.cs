@@ -37,7 +37,7 @@ public class Lever : MonoBehaviour
         // Play audio
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.Play();
-        if (master.game_state.Equals(GameStates.Game_Finished) || master.game_state.Equals(GameStates.Second_Finished))
+        if (master.game_state.Equals(GameStates.Game_Finished))
         {
             Debug.Log("Exiting the game...");
             master.ExitGame();
