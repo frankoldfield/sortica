@@ -13,10 +13,6 @@ public class AnalyticsLogger : MonoBehaviour
     private StreamWriter writer;
     private string filePath;
 
-    // Queue for thread-safe logging
-    private Queue<string> logQueue = new Queue<string>();
-    private object logLock = new object();
-
     void Awake()
     {
         // Singleton pattern
@@ -35,22 +31,6 @@ public class AnalyticsLogger : MonoBehaviour
         sessionStartTime = Time.time;
     }
 
-    void Update()
-    {
-        // Process queued logs on the main thread
-        lock (logLock)
-        {
-            while (logQueue.Count > 0)
-            {
-                string json = logQueue.Dequeue();
-                if (writer != null)
-                {
-                    writer.WriteLine(json);
-                }
-            }
-        }
-    }
-
     public void SetUserId(string username)
     {
         userId = string.IsNullOrEmpty(username) ? SystemInfo.deviceUniqueIdentifier : username;
@@ -59,7 +39,9 @@ public class AnalyticsLogger : MonoBehaviour
         string fileName = $"analytics_{userId}_{sessionId}_{DateTime.Now:yyyyMMdd_HHmmss}.jsonl";
         filePath = Path.Combine(Application.persistentDataPath, fileName);
 
+        // Open with AutoFlush enabled to ensure immediate writes
         writer = new StreamWriter(filePath, append: true);
+        writer.AutoFlush = true; // CRITICAL: Flush after every write
 
         Debug.Log($"Analytics file: {filePath}");
 
@@ -80,10 +62,15 @@ public class AnalyticsLogger : MonoBehaviour
 
         string json = $"{{\"userId\":\"{userId}\",\"sessionId\":\"{sessionId}\",\"timestamp\":{Time.time - sessionStartTime},\"eventType\":\"{eventType}\",\"data\":{dataJson}}}";
 
-        // Queue the log instead of writing directly
-        lock (logLock)
+        // Write immediately to disk (no queuing)
+        try
         {
-            logQueue.Enqueue(json);
+            writer.WriteLine(json);
+            writer.Flush(); // Force immediate flush to disk
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to write analytics event '{eventType}': {e.Message}");
         }
     }
 
@@ -107,50 +94,83 @@ public class AnalyticsLogger : MonoBehaviour
     {
         LogEvent("sessionEnd", new SessionEndData { reason = reason });
 
-        // Force flush remaining logs
-        FlushLogs();
+        // Ensure everything is written
+        if (writer != null)
+        {
+            writer.Flush();
+        }
     }
 
-    void FlushLogs()
+    /// <summary>
+    /// Forces an immediate flush of all data and logs current movement.
+    /// Call this before application exit.
+    /// </summary>
+    public void ForceFlushAll()
     {
-        lock (logLock)
-        {
-            while (logQueue.Count > 0)
-            {
-                string json = logQueue.Dequeue();
-                if (writer != null)
-                {
-                    writer.WriteLine(json);
-                }
-            }
+        Debug.Log("Force flushing all analytics data...");
 
-            if (writer != null)
+        // Get current movement data
+        MasterScript master = FindObjectOfType<MasterScript>();
+        if (master != null)
+        {
+            VRMovementTracker tracker = master.GetComponent<VRMovementTracker>();
+            if (tracker != null)
             {
-                writer.Flush();
+                MovementData currentMovement = tracker.GetMovementData();
+
+                // Determine which level we're in
+                string currentLevel = "unknown";
+                if (master.game_state == GameStates.First_Level || master.game_state == GameStates.First_Finished)
+                {
+                    currentLevel = "level1";
+                }
+                else if (master.game_state == GameStates.Second_Level || master.game_state == GameStates.Second_Finished)
+                {
+                    currentLevel = "level2";
+                }
+
+                // Log current movement state
+                LogEvent("movementSnapshot", new MovementEventData
+                {
+                    level = currentLevel,
+                    headDistance = currentMovement.headDistance,
+                    headRotation = currentMovement.headRotation,
+                    leftHandDistance = currentMovement.leftHandDistance,
+                    leftHandRotation = currentMovement.leftHandRotation,
+                    rightHandDistance = currentMovement.rightHandDistance,
+                    rightHandRotation = currentMovement.rightHandRotation
+                });
             }
         }
+
+        // Final flush
+        if (writer != null)
+        {
+            writer.Flush();
+        }
+
+        Debug.Log($"All analytics data flushed to: {filePath}");
     }
 
     void OnApplicationQuit()
     {
-        FlushLogs();
+        Debug.Log("Application quitting - flushing analytics...");
 
+        // Log that we're quitting
         if (writer != null)
         {
+            LogEvent("applicationQuit", new ApplicationQuitData { reason = "exit" });
+            writer.Flush();
             writer.Close();
         }
     }
 
     void OnDestroy()
     {
-        if (Instance == this)
+        if (Instance == this && writer != null)
         {
-            FlushLogs();
-
-            if (writer != null)
-            {
-                writer.Close();
-            }
+            writer.Flush();
+            writer.Close();
         }
     }
 }
@@ -200,6 +220,7 @@ public class LevelStartData
     public string algorithm;
 }
 
+[System.Serializable]
 public class LevelRestartStartData
 {
     public string level;
@@ -345,4 +366,10 @@ public class DialogueEndedData
     public string dialogueStage;
     public int linesPlayed;
     public int globalStateIndex;
+}
+
+[System.Serializable]
+public class ApplicationQuitData
+{
+    public string reason;
 }

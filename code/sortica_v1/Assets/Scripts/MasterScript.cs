@@ -77,6 +77,7 @@ public class MasterScript : MonoBehaviour
             if (game_state.Equals(GameStates.Restart_Game))
             {
                 HandleStateTransition(actualPrevious, game_state);
+                previous_state = game_state;
             }
             else 
             {
