@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UIElements;
@@ -71,9 +72,18 @@ public class MasterScript : MonoBehaviour
         if (game_state != previous_state)
         {
             Debug.Log("Stage transition from "+ previous_state.ToString()+" to "+ game_state.ToString());
+            GameStates actualPrevious = previous_state;
             previous_state = game_state;
-            HandleStateTransition(previous_state, game_state);
-            
+            if (game_state.Equals(GameStates.Restart_Game))
+            {
+                HandleStateTransition(actualPrevious, game_state);
+            }
+            else 
+            {
+                HandleStateTransition(previous_state, game_state);
+            }
+
+
         }
     }
 
@@ -90,9 +100,10 @@ public class MasterScript : MonoBehaviour
         // Log the state change
         AnalyticsLogger.Instance.LogEvent("stateChanged", new StateChangedData
         {
+            
             fromState = fromState.ToString(),
             toState = toState.ToString()
-        });
+        }); ;
 
         // Handle specific transitions
         switch (toState)
