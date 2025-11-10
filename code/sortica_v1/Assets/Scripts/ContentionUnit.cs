@@ -313,7 +313,13 @@ public class ContentionUnit : MonoBehaviour
 
         // Fill bar to 100%
         UpdateProgressBar();
-
+        MasterScript master = FindFirstObjectByType<MasterScript>();
+        master.buildingCompleted = true;
+        if (currentLevel.Equals("level1"))
+        {
+            master.playGrabBuilding();
+        }
+        
         //Debug.Log($"🎉 Building complete! Player can now grab and place it in the street.");
     }
 
