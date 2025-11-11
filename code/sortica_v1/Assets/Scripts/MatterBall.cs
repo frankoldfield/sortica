@@ -30,7 +30,7 @@ public class MatterBall : MonoBehaviour
             return;
         }
 
-        Debug.Log($"MatterBall {materialType} initialized with XRGrabInteractable");
+        //Debug.Log($"MatterBall {materialType} initialized with XRGrabInteractable");
 
         // Subscribe to grab events
         grabInteractable.selectEntered.AddListener(OnPickup);
@@ -39,7 +39,7 @@ public class MatterBall : MonoBehaviour
 
     public void LogGeneration()
     {
-        AnalyticsLogger.Instance.LogEvent("matterGenerated", new
+        AnalyticsLogger.Instance.LogEvent("matterGenerated", new MatterGeneratedData
         {
             materialType = materialType.ToString(),
             position = transform.position
@@ -50,9 +50,9 @@ public class MatterBall : MonoBehaviour
     {
         pickupTime = Time.time;
 
-        Debug.Log($"Matter ball {materialType} picked up!");
+        //Debug.Log($"Matter ball {materialType} picked up!");
 
-        AnalyticsLogger.Instance.LogEvent("matterPicked", new
+        AnalyticsLogger.Instance.LogEvent("matterPicked", new MatterPickedData
         {
             materialType = materialType.ToString(),
             position = transform.position
@@ -66,9 +66,9 @@ public class MatterBall : MonoBehaviour
     {
         float holdDuration = Time.time - pickupTime;
 
-        Debug.Log($"Matter ball {materialType} dropped!");
+        //Debug.Log($"Matter ball {materialType} dropped!");
 
-        AnalyticsLogger.Instance.LogEvent("matterDropped", new
+        AnalyticsLogger.Instance.LogEvent("matterDropped", new MatterDroppedData
         {
             materialType = materialType.ToString(),
             position = transform.position,

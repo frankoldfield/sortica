@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e4e71e1e55a8a479ed4d11910706ec, type: 3}
+  m_Name: grab_building
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueLine
+  subtitleText: You have finished your first building! You can grab it and have a
+    closer look at it. Once you release it, it will be positioned in Sorting Street!
+  voiceClip: {fileID: 8300000, guid: f9cb2fef836358b48b12cbc9006294bb, type: 3}

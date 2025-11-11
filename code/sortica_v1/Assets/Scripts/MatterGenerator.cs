@@ -16,10 +16,23 @@ public class MatterGenerator : MonoBehaviour
 
     private Queue<MaterialType> generationQueue;
     private GameObject currentMatterBall;
+    
     private MatterBall currentMatterBallScript;
     private bool canGenerate = true;
     private string currentLevel;
 
+    public List<GameObject> currentMatterBalls = new List<GameObject>();
+
+
+    public void restartLevel(string level)
+    {
+        foreach (GameObject obj in currentMatterBalls)
+        {
+            Destroy(obj);
+        }
+        currentMatterBalls.Clear();
+        InitializeForLevel(level);
+    }
     public void InitializeForLevel(string level)
     {
         currentLevel = level;
@@ -36,7 +49,7 @@ public class MatterGenerator : MonoBehaviour
         // Convert sequence to string array for logging
         string[] sequenceStrings = System.Array.ConvertAll(sequence, x => x.ToString());
 
-        AnalyticsLogger.Instance.LogEvent("generatorInitialized", new
+        AnalyticsLogger.Instance.LogEvent("generatorInitialized", new GeneratorInitializedData
         {
             level = level,
             totalMatter = generationQueue.Count,
@@ -51,11 +64,11 @@ public class MatterGenerator : MonoBehaviour
     {
         if (generationQueue.Count == 0)
         {
-            AnalyticsLogger.Instance.LogEvent("generatorEmpty", new
+            AnalyticsLogger.Instance.LogEvent("generatorEmpty", new GeneratorEmptyData
             {
                 level = currentLevel
             });
-            Debug.Log("Generator empty - all matter generated");
+            //Debug.Log("Generator empty - all matter generated");
             return;
         }
 
@@ -73,7 +86,7 @@ public class MatterGenerator : MonoBehaviour
 
         // Instantiate the matter ball
         currentMatterBall = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
-
+        currentMatterBalls.Add(currentMatterBall);
         // Get the MatterBall script
         currentMatterBallScript = currentMatterBall.GetComponent<MatterBall>();
         if (currentMatterBallScript != null)
@@ -90,19 +103,19 @@ public class MatterGenerator : MonoBehaviour
 
         canGenerate = false; // Wait for pickup before generating next
 
-        AnalyticsLogger.Instance.LogEvent("generatorSpawned", new
+        AnalyticsLogger.Instance.LogEvent("generatorSpawned", new GeneratorSpawnedData
         {
             level = currentLevel,
             materialType = materialType.ToString(),
             remainingCount = generationQueue.Count
         });
 
-        Debug.Log($"Generated {materialType}, remaining: {generationQueue.Count}");
+        //Debug.Log($"Generated {materialType}, remaining: {generationQueue.Count}");
     }
 
     void OnCurrentMatterPickedUp()
     {
-        Debug.Log("Generator detected matter pickup!");
+        //Debug.Log("Generator detected matter pickup!");
 
         // Unsubscribe from the event
         if (currentMatterBallScript != null)

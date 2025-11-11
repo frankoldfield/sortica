@@ -1,23 +1,25 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class BuildingPlacement : MonoBehaviour
 {
     [Header("Placement Settings")]
-    public Transform placementZone;
     public float placementRadius = 2f;
     
     [Header("Visual Feedback")]
     public GameObject placementIndicator;
     
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
+    private XRGrabInteractable grabInteractable;
+    public bool isCompleted = false;
     private bool isPlaced = false;
     private string currentLevel;
     private float grabTime;
     
+    
     void Start()
     {
-        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        grabInteractable = GetComponent<XRGrabInteractable>();
         
         if (grabInteractable != null)
         {
@@ -42,20 +44,15 @@ public class BuildingPlacement : MonoBehaviour
     
     void OnBuildingReleased(SelectExitEventArgs args)
     {
-        if (isPlaced || placementZone == null)
+        if (isPlaced)
             return;
         
         float holdDuration = Time.time - grabTime;
         
-        // Check if building is close enough to placement zone
-        float distance = Vector3.Distance(transform.position, placementZone.position);
-        
-        if (distance <= placementRadius)
-        {
-            // Snap to placement zone
-            transform.position = placementZone.position;
-            transform.rotation = placementZone.rotation;
-            
+        if (isCompleted)
+            {
+            Animator animator = GetComponent<Animator>();
+            animator.SetBool("final", true);
             // Disable grabbing
             if (grabInteractable != null)
             {
@@ -63,32 +60,25 @@ public class BuildingPlacement : MonoBehaviour
             }
             
             isPlaced = true;
-            
-            AnalyticsLogger.Instance.LogEvent("buildingPlaced", new 
-            { 
+
+            AnalyticsLogger.Instance.LogEvent("buildingPlaced", new BuildingPlacedData
+            {
                 level = currentLevel,
-                distanceFromTarget = distance,
-                placementAccurate = distance <= placementRadius / 2,
                 holdDuration = holdDuration
             });
-            
-            Debug.Log($"✓ Building placed in street! Level complete!");
+
+            //Debug.Log($"✓ Building placed in street! Level complete!");
             
             // Notify MasterScript that building was placed
             NotifyMasterScript();
         }
-        else
-        {
-            AnalyticsLogger.Instance.LogEvent("buildingPlacementAttempt", new 
-            { 
-                level = currentLevel,
-                distanceFromTarget = distance,
-                tooFar = true,
-                holdDuration = holdDuration
-            });
-            
-            Debug.Log($"Building too far from placement zone. Distance: {distance:F2}m (needs {placementRadius}m)");
-        }
+    }
+
+    public void RestartMovement() 
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.SetBool("rotating", false);
+        animator.SetBool("final", false);
     }
     
     void NotifyMasterScript()
@@ -109,15 +99,4 @@ public class BuildingPlacement : MonoBehaviour
         }
     }
     
-    // Optional: Show distance to placement zone while holding
-    void Update()
-    {
-        if (grabInteractable != null && grabInteractable.isSelected && placementZone != null)
-        {
-            float distance = Vector3.Distance(transform.position, placementZone.position);
-            
-            // You could update a UI element here showing distance
-            // Or change color of placement indicator based on distance
-        }
-    }
 }
