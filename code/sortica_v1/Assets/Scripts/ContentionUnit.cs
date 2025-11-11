@@ -4,8 +4,6 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEditor.SceneManagement;
-using Unity.VisualScripting;
 
 public class ContentionUnit : MonoBehaviour
 {
