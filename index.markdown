@@ -78,7 +78,7 @@ feature_row:
 
 <!-- Breve descripción -->
 <p>
-The proposed serious game, titled "Sortica - Algorithmic Inventory Sorter," places the user in a virtual workshop where they are tasked with managing items arriving on a conveyor belt. The core mechanic involves interacting with a virtual machine to process these items according to specific rules that mirror the logic of fundamental data structures.
+The proposed serious game, titled "Sortica - Algorithmic Inventory Sorter," places the user in a post-apocalyptic world where they will have to sort items correctly with the purpose of rebuilding sorting street.
 </p>
 
 {% include feature_row %}

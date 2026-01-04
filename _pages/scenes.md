@@ -62,4 +62,19 @@ permalink: /scenes
     <p style="font-weight:bold;">Second ShapesXR Prototype</p>
   </div>
 
+  <div style="flex: 1 1 45%; max-width: 600px; display: flex; flex-direction: column; align-items: center;">
+    <div style="position: relative; width: 100%; padding-top: 56.25%;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/ZYSITW1WPqI?si=pn5p5ngBY03Y4Dmw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <p style="font-weight:bold;">Sortica demo</p>
+  </div>
+
+  <div style="flex: 1 1 45%; max-width: 600px; display: flex; flex-direction: column; align-items: center;">
+    <div style="position: relative; width: 100%; padding-top: 56.25%;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/9RIB8oPKI-w?si=cXgWKHPpbej50U64" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <p style="font-weight:bold;">Sortica gameplay</p>
+  </div>
+
 </div>
+

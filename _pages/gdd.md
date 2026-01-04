@@ -11,4 +11,5 @@ permalink: /gdd
   <li><a href="{{ site.baseurl }}/assets/pdfs/gdd_v1.pdf" target="_blank">GDD v1</a></li>
   <li><a href="{{ site.baseurl }}/assets/pdfs/gdd_v2.pdf" target="_blank">GDD v2</a></li>
   <li><a href="{{ site.baseurl }}/assets/pdfs/gdd_v3.pdf" target="_blank">GDD v3</a></li>
+  <li><a href="{{ site.baseurl }}/assets/pdfs/gdd_v4.pdf" target="_blank">GDD v3</a></li>
 </ul>
